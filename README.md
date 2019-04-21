@@ -15,3 +15,14 @@ prod: `yarn encore production`
 dev:  `yarn encore dev` ou `yarn encore dev --watch`
 
 prod: `yarn encore production`
+
+**Database**
+
+`php bin/console doctrine:database:create`
+
+then:
+
+`php bin/console make:migration`
+
+`php bin/console doctrine:migrations:migrate`
+
