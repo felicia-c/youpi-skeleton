@@ -1,0 +1,150 @@
+body {
+  font-family: $font-reg;
+  font-size: 16px;
+  font-weight: normal;
+  letter-spacing: 0.6px;
+  color: $black;
+  background: $light-grey;
+}
+
+/* Text styles */
+h1 {
+  font-family: $font-bnp;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1;
+  color: $black;
+}
+h2 {
+  font-family: $font-bnp;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1;
+  color: $black;
+}
+
+h3 {
+  font-family: $font-bnp;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.33;
+  color: $black;
+  margin: 15px;
+  margin-top: 0;
+
+}
+
+
+.MicroCopy {
+  font-family: $font-reg;
+  font-size: 11px;
+  font-weight: normal;
+  line-height: 2.18;
+  color: $black;
+}
+
+a {
+  color: $primary-color;
+}
+
+.flash {
+  color: white;
+  padding: 10px;
+  position: sticky;
+  text-align: center;
+  &-warning {
+    background-color: darkorange;
+  }
+  &-success {
+    background-color: $secondary-color;
+  }
+}
+
+//buttons
+.btn {
+  box-shadow: none;
+  font-family: $font-reg;
+  text-transform: none;
+  border-radius: 3px;
+  font-size: 1.5rem;
+  &.btn-primary {
+    background: $primary-color;
+    &:hover, &:active {
+      background: $primary-color;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
+    }
+    &:focus {
+      background: $primary-color-light;
+    }
+  }
+  &.btn-secondary {
+    background: $white;
+    border:2px solid $primary-color;
+    color: $primary-color;
+    &:hover, &:active, &:focus {
+      box-shadow: none;
+      background: rgba(221, 177, 68, 0.2);
+    }
+  }
+}
+
+
+.white-block {
+  background: $white;
+  padding: 20px;
+  margin: 20px 10px;
+
+  text-align: center;
+  .card {
+    text-align: left;
+  }
+  .btn.btn-large {
+    @media (max-width: $medium-screen) {
+      margin: 10px 0;
+      width: 100%;
+    }
+   /* @media (max-width: $small-screen) {
+      margin: 10px 0;
+      width: 100%;
+    }*/
+  }
+}
+.card-title {
+  padding: 10px 24px;
+}
+.list-cards{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  text-align: left;
+  //align-items: flex-start;
+  .card{
+    flex: 0 1 30%;
+    //flex: 1 1 auto;
+    //justify-self: flex-start;
+    @media (max-width: $medium-screen) {
+      flex:0 1 49%;
+    }
+    @media (max-width: $small-screen) {
+     flex:0 1 100%;
+    }
+    .card-header {
+      display: flex;
+      .card-title {
+        width: 100%;
+        padding: inherit;
+      }
+      i {
+        width:10%;
+        margin:0;
+        line-height: unset;
+      }
+    }
+    .card-reveal {
+      .card-title {
+        padding: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+ul.elements-list {
+  li {
+    &.collection-item.avatar{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      .secondary-content {
+        position: relative;
+        top:0;
+        right: 0;
+      }
+      a {
+        i.material-icons {
+          top: 6px;
+          position: relative;
+        }
+      }
+    }
+  }
+}

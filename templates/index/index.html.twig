@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="white-block">
+        <h3>Les éléments Youpi</h3>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-large btn-primary" href="{{ path('nouveau') }}">Créer un nouvel élément<i class="material-icons left">add</i></a>
+            <a class="btn btn-large btn-primary" href="{{ path('list_element') }}">Tous les éléments<i class="material-icons left">list</i></a>
+            <!--<button class="btn btn-large btn-secondary waves-effect waves-light">Bouton secondary</button>-->
+        {% endif %}
+    </div>
+    <div class="white-block">
+        <div class="list-cards">
+            {% for element in elements %}
+                {# if element.published == '1' #}
+                <div class="card">
+                    <div class="card-image">
+                        {% if element.image %}
+                        <img class="activator" src="{{ asset('uploads/' ~ element.image) }}">
+                        {% else %}
+                        <img class="activator" src="{{ asset('build/assets/images/leafs.jpg') }}">
+                        {% endif %}
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="card-title activator grey-text text-darken-4">
+                                {{ element.name }}
+                                <i class="material-icons right">more_vert</i>
+                            </div>
+
+                        </div>
+                        <p class="date">{{ element.initDate|date("d/m/Y") }}</p>
+                        <p><a href="{{ path('show_element', { 'id': element.id }) }}">Voir</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ element.name }}<i class="material-icons right">close</i></span>
+                        <small class="date">{{ element.initDate|date("d/m/Y") }}</small>
+                        <p>{{ element.description }}</p>
+                    </div>
+                </div>
+                {# endif #}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+<ul class="collection elements-list">
+{% for element in elements %}
+        <li class="collection-item avatar">
+            {% if element.image %}
+                <img src="{{ asset('uploads/' ~ element.image) }}" alt="" class="circle">
+            {% else %}
+                <img src="{{ asset('build/assets/images/leafs.jpg') }}" alt="" class="circle">
+            {% endif %}
+            <div>
+                <span class="title">{{ element.name }}</span>
+                <p><small>{{ element.initDate|date("d/m/Y") }}</small><br>
+                    <small class="{% if element.published == '1' %}green-text {% else %} orange-text {% endif %}">{% if element.published == '1' %}<i class="material-icons" style="font-size:16px;position:relative;top:4px;">check</i> Publié {% else %} Non-publié{% endif %}</small>
+                </p>
+            </div>
+            <div class="secondary-content">
+                <a href="{{ path('edit_element', { 'id': element.id }) }}" class="">Modifier <i class="material-icons">edit</i></a><br>
+                <a href="{{ path('switch_publish_element', { 'id': element.id }) }}" class="{% if element.published == '1' %}orange-text {% else %} green-text {% endif %}">{% if element.published == '1' %} Dé-publier <i class="material-icons">archive</i>{% else %} Publier <i class="material-icons">publish</i>{% endif %} </a>
+                <br><br><a href="{{ path('delete_element', { 'id': element.id }) }}" class="red-text">Supprimer <i class="material-icons">delete</i></a>
+            </div>
+        </li>
+{% endfor %}
+</ul>

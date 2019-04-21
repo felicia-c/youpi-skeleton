@@ -1,0 +1,15 @@
+<ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+            <div class="background">
+                <img src="{{ asset('build/assets/images/leafs.jpg') }}">
+            </div>
+            <p ><img class="circle" src="{{ asset('build/assets/images/profile-pic.jpg') }}"></p>
+            <p><span class="white-text name">{{ app.user.username }}</span></p>
+            <p><span class="white-text email">jdandturk@gmail.com</span></p>
+        </div></li>
+    <li><a class="waves-effect" href="{{ path('index') }}"><i class="material-icons">home</i>Accueil</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Éléments</a></li>
+    <li><a class="waves-effect" href="{{ path('nouveau') }}"><i class="material-icons">add</i> Nouvel élément</a></li>
+    <li><a class="waves-effect" href="{{ path('list_element') }}"><i class="material-icons">list</i>Tous les éléments</a></li>
+</ul>

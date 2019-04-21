@@ -1,0 +1,99 @@
+form {
+
+  input:not([type]),
+  textarea:not(.browser-default),
+  input[type=text]:not(.browser-default),
+  input[type=password]:not(.browser-default),
+  input[type=email]:not(.browser-default),
+  input[type=url]:not(.browser-default),
+  input[type=time]:not(.browser-default),
+  input[type=date]:not(.browser-default),
+  input[type=datetime]:not(.browser-default),
+  input[type=datetime-local]:not(.browser-default),
+  input[type=tel]:not(.browser-default),
+  input[type=number]:not(.browser-default),
+  input[type=search]:not(.browser-default),
+  textarea.materialize-textarea {
+    border:{
+      top:1px solid $medium-grey;
+      right:1px solid $medium-grey;
+      left:1px solid $medium-grey;
+      bottom:1px solid $medium-grey;
+      radius:3px;
+    }
+    padding-left: 10px;
+    &:focus:not([readonly]) {
+      border:{
+        top:1px solid $primary-color;
+        right:1px solid $primary-color;
+        left:1px solid $primary-color;
+        bottom:1px solid $primary-color;
+      }
+     // box-shadow: 0 1px 0 0 $primary-color;
+      box-shadow: none;
+    }
+  }
+  input:not([type]):focus:not([readonly]) + label,
+  textarea:not(.browser-default):focus:not([readonly]) + label,
+  input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+  input[type=password]:not(.browser-default):focus:not([readonly]) + label,
+  input[type=email]:not(.browser-default):focus:not([readonly]) + label,
+  input[type=url]:not(.browser-default):focus:not([readonly]) + label,
+  input[type=time]:not(.browser-default):focus:not([readonly]) + label,
+  input[type=date]:not(.browser-default):focus:not([readonly]) + label,
+  input[type=datetime]:not(.browser-default):focus:not([readonly]) + label,
+  input[type=datetime-local]:not(.browser-default):focus:not([readonly]) + label,
+  input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
+  input[type=number]:not(.browser-default):focus:not([readonly]) + label,
+  input[type=search]:not(.browser-default):focus:not([readonly]) + label,
+  textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: $primary-color;
+  }
+  //select
+  /*#form_initDate{
+    display: flex;
+    .select-wrapper {
+      flex: 1;
+      display: flex;
+      margin: 5px;
+    }
+  }*/
+  textarea {
+    min-height: 100px;
+    padding: 10px;
+  }
+  .dropdown-content li {
+
+    & > a, & > span {
+      max-width: 330px;
+    }
+  }
+
+  .btn-submit {
+    width: 100%;
+    line-height: 48px;
+    font-size: 18px;
+    &:after {
+      content: url('../../images/right-arrow.svg')
+    }
+  }
+  .input-field {
+    display: flex;
+    width: 100%;
+    margin: 10px 0;
+    & > label {
+      //top: 5px;
+      left: 15px;
+      padding: 0 5px;
+      background: $white;
+      //position: relative;
+    }
+    &.file-field {
+      .file-path-wrapper {
+        width: 100%;
+        display: flex;
+      }
+    }
+  }
+}
+

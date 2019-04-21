@@ -1,0 +1,16 @@
+.form-create-block {
+  background: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  flex: 1 1 100%;
+  margin: 0;
+  h2 {
+    color: $primary-color;
+  }
+  form {
+    max-width: 100%;
+    width: 50%;
+  }
+}

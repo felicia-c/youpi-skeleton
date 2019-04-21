@@ -1,0 +1,39 @@
+index:
+    path: /
+    controller: App\Controller\IndexController::index
+
+login:
+    path: /login
+    controller: App\Controller\IndexController::login
+app_logout:
+    path: /logout
+    methods: GET
+nouveau:
+    path: /nouveau
+    controller: App\Controller\ElementController::addElement
+edit_element:
+    path: /element/edit/{id}
+    controller: App\Controller\ElementController::editElement
+    requirements:
+        id: '\d+'
+show_element:
+    path: /element/{id}
+    controller: App\Controller\ElementController::showElement
+    requirements:
+        id: '\d+'
+switch_publish_element:
+    path: /element/unpublish/{id}
+    controller: App\Controller\ElementController::switchPublishElement
+    requirements:
+        id: '\d+'
+delete_element:
+    path: /element/delete/{id}
+    controller: App\Controller\ElementController::deleteElement
+    requirements:
+        id: '\d+'
+list_element:
+    path: /elements
+    controller: App\Controller\ElementController::listElements
+#testform:
+#    path: /testform
+#    controller: App\Controller\ElementController::new

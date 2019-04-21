@@ -1,0 +1,8 @@
+<header>
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <h1 class="center-align">Youpi</h1>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <p>Hello {{ app.user.username }}</p>
+    {% endif %}
+</header>
+{% include 'layout/nav.html.twig' %}
