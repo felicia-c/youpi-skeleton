@@ -9,7 +9,9 @@
         </div></li>
     <li><a class="waves-effect" href="{{ path('index') }}"><i class="material-icons">home</i>Accueil</a></li>
     <li><div class="divider"></div></li>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     <li><a class="subheader">Éléments</a></li>
     <li><a class="waves-effect" href="{{ path('nouveau') }}"><i class="material-icons">add</i> Nouvel élément</a></li>
     <li><a class="waves-effect" href="{{ path('list_element') }}"><i class="material-icons">list</i>Tous les éléments</a></li>
+    {% endif %}
 </ul>
