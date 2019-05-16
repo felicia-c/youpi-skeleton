@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Entity\Element;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,14 +31,33 @@ class IndexController extends AbstractController
             'elements' => $elements,
         ]);
     }
-
+/*
     /**
      * Route("/login", name="login")
      */
+/*
     public function login()
     {
         return $this->render('login/login.html.twig', [
         'step' => 0,
         ]);
     }
+  */
+
+    public function blog() {
+        $elements = $this->getDoctrine()
+            ->getRepository(Article::class)
+            ->findAllPublished();
+
+        if (!$elements) {
+            throw $this->createNotFoundException(
+                'No article found'
+            );
+        }
+        return $this->render('blog/blog.html.twig', [
+            'step' => 1,
+            'elements' => $elements,
+        ]);
+    }
+
 }

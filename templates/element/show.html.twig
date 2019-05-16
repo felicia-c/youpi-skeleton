@@ -3,9 +3,7 @@
 {% block body %}
 
 {% if is_granted('ROLE_ADMIN') %}
-<div class="white-block">
-    <a href="{{ path('edit_element', { 'id': element.id }) }}" class="btn btn-large btn-primary">Modifier <i class="material-icons">edit</i></a>
-</div>
+    {% include 'layout/edit-button.html.twig' %}
 {% endif %}
 <div class="white-block">
     <div class="card">

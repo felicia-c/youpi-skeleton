@@ -3,7 +3,7 @@
 {% block body %}
 
 <div class="row form-create-block">
-    {%  if edit %}
+    {%  if edit is defined %}
     <h2>Modifier</h2>
     {% else %}
     <h2>Nouvel élément</h2>
@@ -24,7 +24,7 @@
             <label for="el-description">Description</label>
             <span class="helper-text" data-error="Champ obligatoire"></span>
         </div>
-        {% if image %}
+        {% if image is defined %}
         <div>
             <small>image actuelle</small>
             <br>
