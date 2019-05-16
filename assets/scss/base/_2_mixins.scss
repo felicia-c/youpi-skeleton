@@ -1,0 +1,72 @@
+@mixin theme() {
+  body {
+    font-family: $font-reg;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 0.6px;
+    color: $black;
+    background: $light-grey;
+  }
+
+  /* Text styles */
+  h1 {
+    font-family: $font-bnp;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 1;
+    color: $black;
+  }
+  h2 {
+    font-family: $font-bnp;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1;
+    color: $black;
+  }
+
+  h3 {
+    font-family: $font-bnp;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.33;
+    color: $black;
+    margin: 15px;
+    margin-top: 0;
+
+  }
+
+  a {
+    color: $primary-color;
+  }
+
+}
+
+@mixin button() {
+  //buttons
+  .btn {
+    box-shadow: none;
+    font-family: $font-reg;
+    text-transform: none;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    &.btn-primary {
+      background: $primary-color;
+      &:hover, &:active {
+        background: $primary-color;
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
+      }
+      &:focus {
+        background: $primary-color-light;
+      }
+    }
+    &.btn-secondary {
+      background: $white;
+      border:2px solid $primary-color;
+      color: $primary-color;
+      &:hover, &:active, &:focus {
+        box-shadow: none;
+        background: rgba(221, 177, 68, 0.2);
+      }
+    }
+  }
+}

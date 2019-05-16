@@ -6,7 +6,9 @@ body {
   color: $black;
   background: $light-grey;
 }
-
+img {
+  max-width: 100%;
+}
 /* Text styles */
 h1 {
   font-family: $font-bnp;
@@ -107,6 +109,24 @@ a {
       margin: 10px 0;
       width: 100%;
     }*/
+  }
+  &.edit-button-block {
+    a{
+      font-size: 1.4rem;
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+      i {
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+.txt-block {
+  margin: 30px auto;
+  &.intro {
+    font-size: 120%;
   }
 }
 .card-title {

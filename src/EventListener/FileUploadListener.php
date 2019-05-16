@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use App\Entity\Element;
+use App\Entity\Article;
 use App\Service\FileUploader;
 
 class FileUploadListener
@@ -35,7 +36,7 @@ class FileUploadListener
     private function uploadFile($entity)
     {
         // upload only works for Product entities
-        if (!$entity instanceof Element) {
+        if (!$entity instanceof Element && !$entity instanceof Article ) {
             return;
         }
 
@@ -56,7 +57,7 @@ class FileUploadListener
     {
         $entity = $args->getEntity();
 
-        if (!$entity instanceof Element) {
+        if (!$entity instanceof Element  && !$entity instanceof Article ) {
             return;
         }
 

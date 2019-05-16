@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ element.title }}{% endblock %}
+{% block body %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+     {% include 'layout/edit-button.html.twig' %}
+    {% endif %}
+    <div class="white-block">
+        <div class="card-title">
+            <h2>{{ element.title }}</h2>
+        </div>
+        <div class="card-content">
+            <small class="date">
+                {{ element.createdDate|date("d/m/Y") }}
+            </small>
+            {% if element.intro %}
+            <div class="txt-block intro">
+                {{ element.intro|raw }}
+            </div>
+            {% endif %}
+            {% if element.image %}
+                <img src="{{ asset('uploads/' ~ element.image) }}">
+            {% else %}
+                <img src="{{ asset('build/assets/images/leafs.jpg') }}">
+            {% endif %}
+            {% if element.text %}
+            <div  class="txt-block">
+                {{ element.text|raw }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

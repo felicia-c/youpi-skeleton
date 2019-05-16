@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %}Blog{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="white-block">
+            <h3>Blog</h3>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-large btn-primary" href="{{ path('new_article') }}">Créer un nouvel article<i class="material-icons left">add</i></a>
+                <a class="btn btn-large btn-primary" href="{{ path('list_articles') }}">Tous les articles<i class="material-icons left">list</i></a>
+                <!--<button class="btn btn-large btn-secondary waves-effect waves-light">Bouton secondary</button>-->
+            {% endif %}
+        </div>
+        <div class="white-block">
+            <div class="list-cards">
+                {% for element in elements %}
+                    {# if element.published == '1' #}
+                    <div class="card">
+                        <div class="card-image">
+                            {% if element.image %}
+                                <img class="activator" src="{{ asset('uploads/' ~ element.image) }}">
+                            {% else %}
+                                <img class="activator" src="{{ asset('build/assets/images/leafs.jpg') }}">
+                            {% endif %}
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="card-title activator grey-text text-darken-4">
+                                    {{ element.title }}
+                                    <i class="material-icons right">more_vert</i>
+                                </div>
+
+                            </div>
+                            <p class="date">{{ element.createdDate|date("d/m/Y") }}</p>
+                            <p><a href="{{ path('show_article', { 'id': element.id }) }}">Voir</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{ element.title }}<i class="material-icons right">close</i></span>
+                            <small class="date">{{ element.createdDate|date("d/m/Y") }}</small>
+                            <p>{{ element.intro }}</p>
+                        </div>
+                    </div>
+                    {# endif #}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
