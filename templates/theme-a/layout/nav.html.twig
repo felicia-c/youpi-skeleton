@@ -1,0 +1,51 @@
+<!-- Navigation -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="index.html.twig"><img class="logo" src="{{ asset('build/assets/theme-base/images/logo.png') }}" alt="Logo"></a>
+        </div>
+
+        <nav class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="waves-effect" href="{{ path('index') }}">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="{{ path('blog') }}" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header"></li>
+                        <li><a href="{{ path('blog') }}">Articles</a></li>
+                        <!--<li><a href="#">Blog Single Post</a></li>-->
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Admin</li>
+                            <li><a href="{{ path('new_article') }}">Nouvel article</a></li>
+                            <li><a href="{{ path('list_articles') }}">Tous les articles</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Elements<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header"></li>
+                        <li><a href="#">Elements publié</a></li>
+                        <!--<li><a href="#">Blog Single Post</a></li>-->
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Admin</li>
+                            <li><a href="{{ path('nouveau') }}">Nouvel élément</a></li>
+                            <li><a href="{{ path('list_element') }}">Tous les éléments</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</div>

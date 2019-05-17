@@ -97,7 +97,7 @@ class ArticleController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('blog/article.html.twig', ['element' => $element, 'published' => $element->getPublished() ]);
+        return $this->render('theme-a/pages/article.html.twig', ['element' => $element, 'published' => $element->getPublished() ]);
     }
 
     /**

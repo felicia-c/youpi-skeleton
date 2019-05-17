@@ -50,7 +50,10 @@ Encore
     .addStyleEntry('css/bootstrap/ie10-viewport-bug-workaround', './assets/theme-base/bootstrap/css/ie10-viewport-bug-workaround.css')
     .addStyleEntry('css/normalize', './assets/theme-base/css/normalize.css')
     .addStyleEntry('css/style', './assets/theme-base/css/style.css')
-    .addStyleEntry('css/app', './assets/theme-base/scss/app.scss')
+
+
+    /* CUSTOM THEME */
+    .addStyleEntry('css/theme-a/app', './assets/theme-a/scss/app.scss')
 
     /*.addStyleEntry('css/admin', './assets/scss/admin.scss')*/
 
