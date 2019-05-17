@@ -40,22 +40,7 @@ Encore
     .addEntry('js/bootstrap/bootstrap', './assets/theme-base/bootstrap/js/bootstrap.js')
     .addEntry('js/bootstrap/ie10-viewport-bug-workaround', './assets/theme-base/bootstrap/js/ie10-viewport-bug-workaround.js')
     .addEntry('js/bootstrap/ie-emulation-modes-warning', './assets/theme-base/bootstrap/js/ie-emulation-modes-warning.js')
-  //  .addEntry('js/extensions/fancybox/jquery.fancybox', './assets/theme-base/extensions/fancybox/jquery.fancybox.js')
-  //  .addEntry('js/extensions/fancybox/jquery.fancybox.pack', './assets/theme-base/extensions/fancybox/jquery.fancybox.pack.js')
-  //  .addEntry('js/extensions/fancybox/jquery.fancybox-media', './assets/theme-base/extensions/fancybox/jquery.fancybox-media.js')
-  //  .addEntry('js/extensions/owlcarousel/owl.carousel', './assets/theme-base/extensions/owlcarousel/owl.carousel.js')
-  //  .addEntry('js/extensions/portfolio/isotope', './assets/theme-base/extensions/portfolio/isotope.min.js')
-  //  .addEntry('js/extensions/portfolio/portfolio', './assets/theme-base/extensions/portfolio/portfolio.js')
-
-    //.addEntry('js/google-map', './assets/theme-base/js/google-map.js')
-
-   // .addEntry('js/google-map', './assets/theme-base/js/google-map.js')
-   // .addEntry('js/menu', './assets/theme-base/js/menu.js')
     .addEntry('js/app', './assets/theme-base/js/app.js')
-    //.addEntry('extensions/'
-
-  //  .addStyleEntry('css/extensions/owlcarousel/owl.carousel.min', './assets/theme-base/extensions/owlcarousel/assets/owl.carousel.min.css')
-  //  .addStyleEntry('css/extensions/owlcarousel/owl.theme.default.min', './assets/theme-base/extensions/owlcarousel/assets/owl.theme.default.min.css')
     .addStyleEntry('css/extensions/fancybox/jquery.fancybox', './assets/theme-base/extensions/fancybox/jquery.fancybox.css')
 
     /*.addEntry('js/analytics', './assets/js/analytics.js')*/
