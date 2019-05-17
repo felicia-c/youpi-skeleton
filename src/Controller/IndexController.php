@@ -26,7 +26,7 @@ class IndexController extends AbstractController
                 'No element found'
             );
         }
-        return $this->render('index/index.html.twig', [
+        return $this->render('theme-base/index.html.twig', [
             'step' => 1,
             'elements' => $elements,
         ]);
@@ -54,7 +54,7 @@ class IndexController extends AbstractController
                 'No article found'
             );
         }
-        return $this->render('blog/blog.html.twig', [
+        return $this->render('theme-base/blog.html.twig', [
             'step' => 1,
             'elements' => $elements,
         ]);

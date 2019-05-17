@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Youpi, un site chouette">
+
+
+    <title>Youpi - {% block title %}{% endblock %}</title>
+
+    <!-- normalize core CSS -->
+    <link rel="stylesheet" href="{{ asset('/build/css/normalize.css') }}"/>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ asset('/build/css/bootstrap/bootstrap.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/build/css/bootstrap/carousel.css') }}"/>
+    <!--<link rel="stylesheet" href="{{ asset('/build/fonts/glyphicons-halflings-regular.eot') }}"/>-->
+
+    <!-- Load jQuery -->
+    <!-- jquery -->
+   <!-- <script src="{{ asset('/build/js/jquery.js') }}"></script> -->
+   <!--
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link rel="stylesheet" href="{{ asset('/build/css/bootstrap/ie10-viewport-bug-workaround.css') }}"/>
+
+    <script src="{{ asset('/build/js/bootstrap/ie-emulation-modes-warning.js') }}"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Fonts - Change if needed -->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400italic,400,700,300,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,700,300' rel='stylesheet' type='text/css'>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Menu shrinking -->
+   <!-- <link rel="stylesheet" href="{{ asset('/build/js/menu.js') }}"/>-->
+
+    <!-- Main styles of this template -->
+    <link rel="stylesheet" href="{{ asset('/build/css/style.css') }}?v=1.0.0"/>
+    {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('/build/css/app.css') }}"/>
+    {% endblock %}
+</head>
+<body>
+
+
+{# read and display all flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+{% block body %}{% endblock %}
+
+{% include 'theme-base/layout/footer.html.twig' %}
+<!-- Scripts -->
+
+<!-- Loads Bootstrap Main JS -->
+<!--<script src="bootstrap/js/bootstrap.min.js"></script>-->
+<script src="{{ asset('/build/js/bootstrap/bootstrap.js') }}"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--<script src="bootstrap/js/ie10-viewport-bug-workaround.js"></script>-->
+<script src="{{ asset('/build/js/bootstrap/ie10-viewport-bug-workaround.js') }}"></script>
+<!-- Initiate Google Maps - For more Infos look into the documentation -->
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<!--<script src="js/google-map.js"></script>-->
+
+<!--<script src="{{ asset('/build/js/google-map.js') }}"></script>-->
+{% block javascripts %}
+    <script src="{{ asset('/build/js/app.js') }}"></script>
+{% endblock %}
+
+
+
+
+<!-- Initiate Portoflio Script -->
+<!--<script src="{{ asset('/build/js/extensions/portfolio/isotope.js') }}"></script>
+<script src="{{ asset('/build/js/extensions/portfolio/portfolio.js') }}"></script> -->
+
+<!-- Initiate Fancybox/Lightbox Script -->
+<!-- Fancybox/Lightbox -->
+<!--<script type="text/javascript" src="{{ asset('/build/js/extensions/fancybox/jquery.fancybox.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/build/js/extensions/fancybox/jquery.fancybox.pack.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('/build/css/extensions/fancybox/jquery.fancybox.css') }}" media="screen" />
+<script type="text/javascript" src="{{ asset('/build/js/extensions/fancybox/jquery.fancybox-media.js') }}"></script>-->
+<!--
+<script type="text/javascript" src="extensions/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="extensions/fancybox/jquery.fancybox.css" media="screen" />
+<script type="text/javascript" src="extensions/fancybox/jquery.fancybox-media.js"></script>
+-->
+<!-- Initiate Fancybox/Lightbox for Videos -->
+<!--<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+</script> -->
+</body>
+
+</html>
