@@ -1,1 +1,11 @@
 /** Please add your Custom CSS here **/
+
+.logo {
+  transform: scale(1.25);
+  transition: transform ease-in 0.5s;
+}
+.top-nav-collapse {
+  .logo {
+    transform: scale(1);
+  }
+}
