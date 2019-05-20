@@ -1,7 +1,7 @@
 /*
 
-Primary:								#FF5800
-Primary Shade:							#c84600
+Primary:								$primary-color
+Primary Shade:							$primary-color-light
 Text:									#7a7c82
 Grey:									#eee
 Dark Grey:								#333
@@ -13,81 +13,81 @@ Secondary Footer:						#111
 
 body,
 html {
-    color: #7a7c82;
+    color: $dark-grey;
 }
 
 h1,
 h2 {
-    color: #FF5800;
+    color: $primary-color-light;
 }
 
 h3,
 h4,
 h5,
 h6 {
-    color: #333;
+    color: $primary-color;
 }
 
 p {
-    color: #7a7c82;
+    color: $dark-grey;
 }
 
 blockquote {
-    color: #7a7c82;
+    color: $medium-grey;
 }
 
 span {
-    color: #FF5800;
+    color: $primary-color;
 }
 
 a {
-    color: #FF5800;
+    color: $primary-color;
 }
 
 a:hover,
 a:focus {
-    color: #c84600;
+    color: $primary-color-light;
 }
 
 .title-regular {
-    color: #333;
+    color: $dark-grey;
 }
 
 .title-underline {
-    background-color: #ff5800;
+    background-color: $primary-color-light;
 }
 
 .title-underline-center {
-    background-color: #ff5800;
+    background-color: $primary-color;
 }
 
 
 .box-icon {
-    color: #ff5800;
+    color: $primary-color;
 }
 
 
 .btn-primary {
-    background-color: #FF5800;
-    border-color: #c84600;
+    background-color: $primary-color;
+    border-color: $primary-color;
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
 }
 
 .btn-primary:hover {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
 }
 
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color:$primary-color;
 }
 
 .btn-primary:active:hover,
@@ -96,31 +96,32 @@ a:focus {
 .btn-primary.active:focus,
 .btn-primary:active.focus,
 .btn-primary.active.focus {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
 }
 
 .btn-default {
-    background-color: #FF5800;
-    border-color: #c84600;
+    background-color: $white;
+    border-color: $primary-color-light;
 }
 
 .btn-default:focus,
 .btn-default.focus {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
 }
 
 .btn-default:hover {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
 }
 
 .btn-default:active,
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
+
 }
 
 .btn-default:active:hover,
@@ -129,12 +130,13 @@ a:focus {
 .btn-default.active:focus,
 .btn-default:active.focus,
 .btn-default.active.focus {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
+
 }
 
 .btn-link {
-    color: #FF5800;
+    color: $primary-color;
 }
 
 
@@ -144,23 +146,23 @@ a:focus {
 }
 
 .progress-bar {
-    background-color: #ff5800;
+    background-color: $secondary-color;
 }
 
 
 .progress-completed {
-    color: #333;
+    color: $secondary-color;
 }
 
 .progress-skillbar-title {
-    color: #333;
+    color: $primary-color;
 }
 
 
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-    background-color: #ff5800;
+    background-color: $primary-color-light;
 }
 
 
@@ -172,8 +174,8 @@ a:focus {
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-    background-color: #ff5800;
-    border-color: #ff5800;
+    background-color: $primary-color;
+    border-color: $primary-color;
 }
 
 .pagination > li > a,
@@ -185,14 +187,14 @@ a:focus {
 .pagination > li > span:hover,
 .pagination > li > a:focus,
 .pagination > li > span:focus {
-    color: #ff5800;
+    color: $primary-color;
 }
 
 
 /* Labels */
 
 .label-primary {
-    background-color: #ff5800;
+    background-color: $primary-color;
 }
 
 
@@ -201,12 +203,12 @@ a:focus {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-    background-color: #ff5800;
+    background-color: $primary-color;
 }
 
 .list-group-item.active > .badge,
 .nav-pills > .active > a > .badge {
-    color: #ff5800;
+    color: $primary-color;
 }
 
 
@@ -215,8 +217,8 @@ a:focus {
 .list-group-item.active,
 .list-group-item.active:hover,
 .list-group-item.active:focus {
-    background-color: #ff5800;
-    border-color: #ff5800;
+    background-color: $primary-color;
+    border-color: $primary-color;
 }
 
 
@@ -224,12 +226,12 @@ a:focus {
 /* Panels */
 
 .panel-primary > .panel-heading {
-    background-color: #ff5800;
-    border-color: #ff5800;
+    background-color: $primary-color;
+    border-color: $primary-color;
 }
 
 .panel-primary {
-    border-color: #ff5800;
+    border-color: $primary-color;
 }
 
 .section-grey {
@@ -241,12 +243,12 @@ a:focus {
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #FF5800;
+    color: $primary-color;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: #FF5800;
+    color: $primary-color;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -261,21 +263,21 @@ a:focus {
     .dropdown-menu > .active > a,
     .dropdown-menu > .active > a:hover,
     .dropdown-menu > .active > a:focus {
-        background-color: #FF5800;
+        background-color: $primary-color;
     }
     .dropdown-menu > li > a:hover,
     .dropdown-menu > li > a:focus {
-        background-color: #FF5800;
+        background-color: $primary-color;
     }
 }
 
 .dropdown-header {
-    color: #FF5800;
+    color: $primary-color;
 }
 
 
 .sidebar-header {
-    color: #FF5800;
+    color: $primary-color;
 }
 
 .sidebar .nav > li > a {
@@ -291,7 +293,7 @@ a:focus {
 
 
 .page-header h1 {
-    border-bottom: 5px solid #FF5800;
+    border-bottom: 5px solid $primary-color;
 }
 
 
@@ -311,30 +313,34 @@ a:focus {
 
 
 .cta-primary {
-    background-color: #ff5800;
+    background-color: $secondary-color;
 }
 
 
 .cta-primary .btn-primary {
-    border-color: #c84600;
-    color: #ff5800;
+    border-color: $primary-color;
+    color: $white;
+    background-color: $primary-color;
 }
 
 .cta-primary .btn-primary:focus,
 .cta-primary .btn-primary.focus {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
+    //opacity: 0.8;
 }
 
 .cta-primary .btn-primary:hover {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
+    //opacity: 0.8;
 }
 
 .cta-primary .btn-primary:active,
 .cta-primary .btn-primary.activey {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
+    //opacity: 0.8;
 }
 
 .cta-primary .btn-primary:active:hover,
@@ -343,24 +349,25 @@ a:focus {
 .cta-primary .btn-primary.active:focus,
 .cta-primary .btn-primary:active.focus,
 .btn-primary.active.focus {
-     background-color: #c84600;
-    border-color: #FF5800;
+     background-color: $primary-color-light;
+    border-color: $primary-color;
+    //opacity: 0.8;
 }
 
 
 
 .intro .fa {
-    color: #ff5800;
+    color: $secondary-color;
 }
 
 
 .feature .fa {
-    color: #ff5800;
+    color: $secondary-color;
 }
 
 
 .feature-box .feature-box-icon {
-    background: #ff5800;
+    background: $primary-color;
    }
 
 
@@ -369,30 +376,30 @@ a:focus {
 }
 
 .product .type {
-    background-color: #FF5800;
+    background-color: $primary-color;
 }
 
 
 .popular .pricing-footer .btn-primary {
-    border-color: #c84600;
-    color: #ff5800;
+    border-color: $primary-color-light;
+    color: $primary-color;
 }
 
 .popular .pricing-footer .btn-primary:focus,
 .popular .pricing-footer .btn-primary.focus {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
 }
 
 .popular .pricing-footer .btn-primary:hover {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
 }
 
 .popular .pricing-footer .btn-primary:active,
-.popular .pricing-footer .btn-primary.activey {
-    background-color: #c84600;
-    border-color: #FF5800;
+.popular .pricing-footer .btn-primary.active {
+    background-color: $primary-color-light;
+    border-color: $primary-color;
 }
 
 .popular .pricing-footer .btn-primary:active:hover,
@@ -401,13 +408,13 @@ a:focus {
 .popular .pricing-footer .btn-primary.active:focus,
 .popular .pricing-footer .btn-primary:active.focus,
 .popular .pricing-footer .btn-primary.active.focus {
-    background-color: #c84600;
-    border-color: #FF5800;
+    background-color: $primary-color-light;
+    border-color: $primary-color;
 }
 
 
 .product.popular {
-    background-color: #ff5800;
+    background-color: $primary-color;
 }
 
 
@@ -451,7 +458,7 @@ footer {
 
 
 .footer2-container {
-    background-color: #111;
+    background-color: $footer-color;
 }
 
 .video-container {
@@ -463,11 +470,11 @@ footer {
 
 ul.filter > li > a:hover,
 ul.filter > li > a:focus {
-    color: #c84600;
+    color: $primary-color-light;
 }
 
 ul.filter > li.active a {
-    color: #FF5800;
+    color: $primary-color;
 }
 
 ul.filter > li span {
@@ -477,7 +484,7 @@ ul.filter > li span {
 
 
 .portfolio-section .info-head h3 {
-    color: #FF5800;
+    color: $primary-color;
 }
 
 
@@ -497,9 +504,9 @@ ul.filter > li span {
 -------------------------------------------------- */
 
 .owl-theme .owl-nav [class*="owl-"] {
-    background: #FF5800!important;
+    background: $primary-color!important;
 }
 
 .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
-    background: #FF5800!important;
+    background: $primary-color!important;
 }

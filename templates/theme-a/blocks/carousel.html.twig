@@ -1,0 +1,36 @@
+<div id="carousel-header" class="carousel slide">
+    {% set i = 0 %}
+    <!-- Indicators -->
+    <ol class="carousel-indicators hidden-xs">
+        {% for element in elements %}
+            {% set i = i + 1 %}
+        <li data-target="#carousel-header" data-slide-to="{{ i - 1 }}" class=" {% if i == 1 %}active{% endif %}"></li>
+        {% endfor %}
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        {% set y = 0 %}
+        {% for element in elements %}
+            {% set y = y + 1 %}
+        <div class="item {% if y == 1 %} active{% endif %}">
+            {% if element.image %}
+            <img class="img-responsive img-full" src="{{ asset('uploads/' ~ element.image) }}" alt="">
+            {% else %}
+            <img class="img-responsive img-full" src="{{ asset('build/assets/theme-base/images/leafs.jpg') }}" alt="">
+            {% endif %}
+            <div class="carousel-caption">
+                <h3>{{ element.name }}</h3>
+                <p>{{ element.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-header" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-header" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
+</div>
