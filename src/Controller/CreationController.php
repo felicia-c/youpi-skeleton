@@ -141,8 +141,12 @@ class CreationController extends AbstractController
         // var_dump($published);
         if ($published === true) {
             $element->setPublished(false);
+            $flashText = 'Élément dépublié !';
+            $flashType = 'warning';
         } else {
             $element->setPublished(true);
+            $flashText = 'Élément publié !';
+            $flashType = 'success';
         }
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->flush();
@@ -153,7 +157,7 @@ class CreationController extends AbstractController
                 'No element found for id '.$id
             );
         }
-        $this->addFlash('warning', 'Élément dépublié !');
+        $this->addFlash($flashType, $flashText);
         //return new Response('Check out this great product: '.$element->getName());
 
         // or render a template
