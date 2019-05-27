@@ -20,7 +20,14 @@
 .breadcrumb {
   margin-bottom: 0;
 }
-
+.hero-header {
+  .intro-text {
+    .intro-lead-in, .intro-heading{
+      margin-top: 40px;
+      text-shadow: 5px 0px 10px $black;
+    }
+  }
+}
 .bg {
  // background: url('/assets/example/bg_blueplane.jpg') no-repeat center center;
   position: fixed;
