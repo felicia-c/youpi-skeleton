@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+$(document).ready(function($) {
 
 
 /*
@@ -44,12 +44,13 @@ jQuery(document).ready(function($) {
 		
 		// 3 column layout
 		var isotopeContainer2 = $('.isotopeContainer2');
-		if( !isotopeContainer2.length || !jQuery().isotope ) return;
+		//if( !isotopeContainer2.length || !jQuery().isotope ) return;
 		$win.load(function(){
 			isotopeContainer2.isotope({
 				itemSelector: '.isotopeSelector'
 			});
-		$('.isotopeFilters2').on( 'click', 'a', function(e) {
+		$('body').on( 'click', '.isotopeFilters2 a', function(e) {
+			console.log('isotope2');
 				$('.isotopeFilters2').find('.active').removeClass('active');
 				$(this).parent().addClass('active');
 				var filterValue = $(this).attr('data-filter');
@@ -130,11 +131,11 @@ jQuery(document).ready(function($) {
 |
 |
 */
-	
+
 	myTheme.Isotope();
 	myTheme.Fancybox();
 	
-	
+
 
 });
 

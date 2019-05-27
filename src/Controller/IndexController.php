@@ -43,6 +43,38 @@ class IndexController extends AbstractController
         ]);
     }
   */
+    public function about() {
+        $elements = $this->getDoctrine()
+            ->getRepository(Article::class)
+            ->findAllPublished();
+
+        if (!$elements) {
+            throw $this->createNotFoundException(
+                'No article found'
+            );
+        }
+        return $this->render('theme-a/pages/about.html.twig', [
+            //'step' => 1,
+            'page_title' => 'À propos',
+            'about' => $elements,
+        ]);
+    }
+
+    public function creations() {
+        $elements = $this->getDoctrine()
+            ->getRepository(Element::class)
+            ->findAllPublished();
+
+        if (!$elements) {
+            throw $this->createNotFoundException(
+                'No element found'
+            );
+        }
+        return $this->render('theme-a/pages/creations.html.twig', [
+            'page_title' => 'Créations',
+            'creations' => $elements,
+        ]);
+    }
 
     public function blog() {
         $elements = $this->getDoctrine()
@@ -55,8 +87,24 @@ class IndexController extends AbstractController
             );
         }
         return $this->render('theme-a/pages/blog.html.twig', [
-            'step' => 1,
+            //'step' => 1,
+            'page_title' => 'Blog',
             'elements' => $elements,
+        ]);
+    }
+    public function contact() {
+       /* $elements = $this->getDoctrine()
+            ->getRepository(Article::class)
+            ->findAllPublished();
+
+        if (!$elements) {
+            throw $this->createNotFoundException(
+                'No article found'
+            );
+        }*/
+        return $this->render('theme-a/pages/contact.html.twig', [
+            //'step' => 1,
+           // 'elements' => $elements,
         ]);
     }
 

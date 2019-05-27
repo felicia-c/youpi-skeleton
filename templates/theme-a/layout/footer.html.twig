@@ -1,5 +1,6 @@
 
 <!-- FOOTER 1 -->
+
 <footer>
     <div class="container">
         <div class="row">
@@ -11,32 +12,33 @@
                 </div>
                 <div>
                     <address class="margin-bottom-30">
-                        <p>Samplestreet 3<br/>
-                            34117 Kassel<br/>
-                            Germany</p>
+                        <p>Adrien ROGARD <br/>
+                            75013 Paris<br/>
+                            France</p>
                     </address>
                 </div>
                 <div class="margin-bottom-30">
-                    <p><i class="fa fa-phone"></i> +49 561 00 00 00 00
-                        <br/>
+                    <p><i class="fa fa-phone"></i> +33 6 09 55 68 43
+                       <!-- <br/>
                         <i class="fa fa-fax"></i> +49 561 00 00 00 00</p>
+                        -->
                 </div>
                 <div>
-                    <a href="https://lautenschlager.de">www.lautenschlager.de</a>
+                    <a href="https://www.adrienrogard.com">www.adrienrogard.com</a>
                     <br/>
-                    <a href="mailto:info@lautenschlager.de">info@lautenschlager.de</a>
+                    <a href="mailto:contact@adrienrogard.com">contact@adrienrogard.com</a>
                 </div>
             </div>
             <div class="col-md-3 footer-menu">
-                <h4>About Us</h4>
-                <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
-                <a href="../about-us.html">
-                    <button class="btn btn-primary">Read More</button>
+                <h4>En bref</h4>
+                <p>Plus de <strong>10 ans d'expérience en paysagisme</strong> à Paris et en Île-de-France, <strong>création d'espaces verts</strong>, <strong>végatalisation de terrasses</strong> et <strong>aménagement de jardins</strong>.</p>
+                <p>Pour garantir la durée de vie de vos plantes, nous réalisons également l'installation de systèmes d'<strong>arrossage automatique</strong> sur jardins, terrasses et balcons.</p>
+                <a href="{{ path('about') }}">
+                    <button class="btn btn-primary">En savoir +</button>
                 </a>
             </div>
             <div class="col-md-3 footer-blog">
-                <h4>RECENT BLOG POSTS</h4>
+                <h4>Ajouts récents</h4>
                 <ul>
                     <li><a href="#">Blog Entry 1<br/></a> <a href="#">February 10 / John Doe </a></li>
                     <li><a href="#">Blog Entry 2<br/></a> <a href="#">March 14 / Jane Doe </a></li>
@@ -45,24 +47,30 @@
                 </ul>
             </div>
             <div class="col-md-3  footer-menu">
-                <h4>NAVIGATE</h4>
+                <h4>Menu</h4>
                 <ul>
-                    <a href="../index.html.twig">
-                        <li>Home</li>
+                    <a href="{{ path('index') }}">
+                        <li>Accueil</li>
                     </a>
-                    <a href="../about-me.html">
-                        <li>About Me</li>
+                    <a href="{{ path('about') }}">
+                        <li>À propos</li>
                     </a>
-                    <a href="../about-us.html">
-                        <li>About Us</li>
+                    <a href="{{ path('creations') }}">
+                        <li>Créations</li>
                     </a>
                     <a href="../our-team.html">
-                        <li>Our Team</li>
+                        <li>Entretien</li>
                     </a>
-                    <a href="../blog-right-sidebar.html">
+                    <a href="{{ path('blog') }}">
+                        <li>Nous aimons</li>
+                    </a>
+                    <a href="{{ path('blog') }}">
                         <li>Blog</li>
                     </a>
-                    <a href="../contact.html">
+                    <a href="{{ path('blog') }}">
+                        <li>Biblio</li>
+                    </a>
+                    <a href="{{ path('contact') }}">
                         <li>Contact</li>
                     </a>
                 </ul>
@@ -73,6 +81,7 @@
 </footer>
 
 <!-- FOOTER 2 -->
+{#
 <footer class="page-section-no-padding  footer2-container">
     <div class="container">
         <div class="row">
@@ -96,3 +105,4 @@
         </div>
     </div>
 </footer>
+#}
