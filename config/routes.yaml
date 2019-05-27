@@ -43,7 +43,28 @@ about:
 creations:
     path: /creations
     controller: App\Controller\IndexController::creations
+list_creations:
+    path: /admin/mes-creations
+    controller: App\Controller\CreationController::listCreations
 
+new_creation:
+    path: /admin/nouvelle-creation
+    controller: App\Controller\CreationController::addCreation
+edit_creation:
+    path: /admin/creation/edit/{id}
+    controller: App\Controller\CreationController::editCreation
+    requirements:
+        id: '\d+'
+delete_creation:
+    path: /admin/creation/delete/{id}
+    controller: App\Controller\CreationController::deleteCreation
+    requirements:
+        id: '\d+'
+switch_publish_creation:
+    path: /creation/unpublish/{id}
+    controller: App\Controller\CreationController::switchPublishCreation
+    requirements:
+        id: '\d+'
 #BLOG
 blog:
     path: /blog

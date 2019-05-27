@@ -1,5 +1,13 @@
 /** Please add your Custom CSS here **/
-
+.red-text {
+  color: $red-error;
+}
+.green-text {
+  color: green;
+}
+.orange-text {
+  color: darkorange;
+}
 .logo {
   transform: scale(1.25);
   transition: transform ease-in 0.5s;
@@ -34,6 +42,22 @@
   }
 }
 
+.flash {
+  position: relative;
+  top: 30px;
+  margin: 30px 50px;
+  text-align: center;
+  font-size: 4rem;
+  &.flash-success {
+    color: green;
+  }
+  &.flash-error {
+    color:$red-error;
+  }
+  &.flash-warning {
+    color: darkorange;
+  }
+}
 .parallax-block {
  // height: 100%;
   height: 550px;
@@ -44,5 +68,25 @@
   .intro-text {
     padding-top: 50px;
     padding-bottom: 50px;
+  }
+}
+
+.file-path-wrapper {
+  visibility: hidden;
+}
+
+/** ADMIN **/
+/* list elements */
+.avatar {
+  img {
+    max-width: 300px;
+  }
+}
+.secondary-content {
+  min-width: 120px;
+  i {
+    position: relative;
+    font-size: 18px;
+    top: 4px;
   }
 }

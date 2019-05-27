@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 use App\Service\FileUploader;
-
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\File;
@@ -44,9 +44,9 @@ class ArticleController extends AbstractController
 
             $element = $form->getData();
 
-            $file = $element->getImage();
+            $file = new UploadedFile($element->getImage(), $element->getImage());
             if ($file) {
-                $fileName = $fileUploader->upload(new File($file));
+                $fileName = $fileUploader->upload($file);
                 $element->setImage($fileName);
 
             } else {
@@ -71,10 +71,11 @@ class ArticleController extends AbstractController
         }
 
 
-        return $this->render('blog/create-article.html.twig', [
+        return $this->render('theme-a/admin/create-article.html.twig', [
             'form' => $form->createView(),
             'button_text' => 'Valider',
-            'step' => 2
+            'step' => 2,
+            'page_title' => 'Nouvel article'
         ]);
     }
 
@@ -97,7 +98,8 @@ class ArticleController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('theme-a/pages/article.html.twig', ['element' => $element, 'published' => $element->getPublished() ]);
+        return $this->render('theme-a/pages/article.html.twig', ['element' => $element, 'published' => $element->getPublished(),
+            'page_title' => $element->getTitle() ]);
     }
 
     /**
@@ -187,7 +189,7 @@ class ArticleController extends AbstractController
                 'id' => $element->getId()
             ]);
         }
-        return $this->render('blog/create-article.html.twig', [
+        return $this->render('theme-a/admin/create-article.html.twig', [
             'form' => $form->createView(),
             //'miniature' => $oldFileNamePath,
             'id' => $element->getId(),
@@ -195,6 +197,7 @@ class ArticleController extends AbstractController
             'edit' => true,
             //'image' => $element->getImage(),
             'button_text' => 'Modifier !',
+            'page_title' => 'Modifier un article'
         ]);
     }
 
@@ -242,7 +245,8 @@ class ArticleController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('blog/articles-list.html.twig', ['elements' => $elements]);
+        return $this->render('theme-a/pages/blog.html.twig', ['elements' => $elements,
+            'page_title' => 'Mes articles']);
     }
 
 }

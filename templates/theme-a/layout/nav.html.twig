@@ -31,8 +31,8 @@
                         {% if is_granted('ROLE_ADMIN') %}
                             <li class="divider"></li>
                             <li class="dropdown-header">Admin</li>
-                            <li><a href="{{ path('new_article') }}">Nouvelle creation</a></li>
-                            <li><a href="{{ path('list_articles') }}">Toutes les créations</a></li>
+                            <li><a href="{{ path('new_creation') }}">Nouvelle creation</a></li>
+                            <li><a href="{{ path('list_creations') }}">Toutes les créations</a></li>
                         {% endif %}
                     </ul>
                 </li>

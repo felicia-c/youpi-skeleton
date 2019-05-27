@@ -1,0 +1,43 @@
+{% extends 'theme-a/base.html.twig' %}
+{% block title %}Mes créations{% endblock %}
+{% block body %}
+<section class="page-section-no-padding" style="margin-top: 20px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-dark elements-list">
+                    {% for element in elements %}
+                        <tr class="collection-item">
+                            <td class="col">
+                                <div class=" avatar">
+                                    {% if element.image %}
+                                        <img src="{{ asset('uploads/' ~ element.image) }}" alt="" class="circle">
+                                    {% else %}
+                                        <img src="{{ asset('build/assets/images/leafs.jpg') }}" alt="" class="circle">
+                                    {% endif %}
+                                </div>
+                            </td>
+
+                            <td class="col">
+                                <p><small>{{ element.achievementDate|date("d/m/Y") }}</small><br>
+                                    <small class="{% if element.published == '1' %}green-text {% else %} orange-text {% endif %}">{% if element.published == '1' %}<i class="material-icons" style="font-size:16px;position:relative;top:4px;">check</i> Publié {% else %} Non-publié{% endif %}</small>
+                                </p>
+                            </td>
+                            <td class="col">
+                                <h2 class="title">{{ element.title }}</h2>
+                                {{ element.description }}
+                            </td>
+                            <td class="secondary-content col">
+                                <a href="{{ path('edit_creation', { 'id': element.id }) }}" class="">Modifier <i class="material-icons">edit</i></a><br>
+                                <a href="{{ path('switch_publish_creation', { 'id': element.id }) }}" class="{% if element.published == '1' %}orange-text {% else %} green-text {% endif %}">{% if element.published == '1' %} Dé-publier <i class="material-icons">archive</i>{% else %} Publier <i class="material-icons">publish</i>{% endif %} </a>
+                                <br><br><a href="{{ path('delete_creation', { 'id': element.id }) }}" class="red-text">Supprimer <i class="material-icons">delete</i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

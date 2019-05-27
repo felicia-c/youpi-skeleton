@@ -1,7 +1,9 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Creation;
 use App\Entity\Element;
+use App\Form\CreationType;
 use App\Form\ElementType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -9,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use App\Service\FileUploader;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\File;
@@ -17,36 +20,36 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class ElementController extends AbstractController
+class CreationController extends AbstractController
 {
 
     /**
-     * Route("/nouveau", name="nouveau")
+     * Route("/admin/nouvelle-creation", name="new_creation")
      */
-    public function addElement(Request $request,  FileUploader $fileUploader)
+    public function addCreation(Request $request,  FileUploader $fileUploader)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Ah zut ! Vous n\'avez pas accès à cette page');
         $user = $this->getUser();
 
-    /*
-        $element = new Element();
-        $element->setName($request->request->get('name'));
-        $element->setInitDate(new \DateTime($request->request->get('initDate')));
-        $element->setImage($request->request->get('image')
-           // new File($this->getParameter('images_directory').'/'.$request->request->get('image'))
-        );
-        $form = $this->createFormBuilder($element)
-            // ->add('name', TextType::class, ['label' => 'Nom'])
-            // ->add('initDate', DateType::class, ['label' => 'Date'])
-            //->add('save', SubmitType::class, ['label' => 'Étape suivante'])
+        /*
+            $element = new Element();
+            $element->setName($request->request->get('name'));
+            $element->setInitDate(new \DateTime($request->request->get('initDate')));
+            $element->setImage($request->request->get('image')
+               // new File($this->getParameter('images_directory').'/'.$request->request->get('image'))
+            );
+            $form = $this->createFormBuilder($element)
+                // ->add('name', TextType::class, ['label' => 'Nom'])
+                // ->add('initDate', DateType::class, ['label' => 'Date'])
+                //->add('save', SubmitType::class, ['label' => 'Étape suivante'])
 
-            ->getForm();
-*/
+                ->getForm();
+    */
 
-        $element = new Element();
-        $form = $this->createForm(ElementType::class, $element);
-        $element->setName($request->request->get('name'));
-        $element->setInitDate(new \DateTime($request->request->get('initDate')));
+        $element = new Creation();
+        $form = $this->createForm(CreationType::class, $element);
+        $element->setTitle($request->request->get('title'));
+        $element->setAchievementDate(new \DateTime($request->request->get('achievementDate')));
         $element->setPublished(true);
         //$element->setImage($request->request->get('image'));
         //$element->setImage(new File($this->getParameter('images_directory').'/'.$fileName));
@@ -56,7 +59,7 @@ class ElementController extends AbstractController
 
             $element = $form->getData();
 
-            $file = $element->getImage();
+            $file = new UploadedFile($element->getImage(), $element->getImage());
             if ($file) {
                 $fileName = $fileUploader->upload($file);
                 $element->setImage($fileName);
@@ -71,9 +74,11 @@ class ElementController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Nouvel élément ajouté !'
+                'Nouvelle création ajoutée !'
             );
-            return $this->redirectToRoute('show_element', ['id' => $element->getId()]);
+
+            return $this->redirectToRoute('list_creations');
+            //return $this->redirectToRoute('creations');
         }
         else if ($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash(
@@ -83,11 +88,12 @@ class ElementController extends AbstractController
         }
 
 
-        return $this->render('theme-a/admin/create.html.twig', [
+        return $this->render('theme-a/admin/new-creation.html.twig', [
             'form' => $form->createView(),
-           // 'image' => $element->getImage(),
+            // 'image' => $element->getImage(),
             'button_text' => 'Valider',
-            'step' => 2
+            'step' => 2,
+            'page_title' => 'Nouvelle création'
         ]);
         /*
 
@@ -101,15 +107,15 @@ class ElementController extends AbstractController
     /**
      * Route("/element/{id}", name="element_show")
      */
-    public function showElement($id)
+    public function showCreation($id)
     {
         $element = $this->getDoctrine()
-            ->getRepository(Element::class)
+            ->getRepository(Creation::class)
             ->find($id);
 
         if (!$element) {
             throw $this->createNotFoundException(
-                'No element found for id '.$id
+                'Impossible de trouver la création n°'.$id
             );
         }
 
@@ -117,22 +123,22 @@ class ElementController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-         return $this->render('element/show.html.twig', ['element' => $element, 'published' => $element->getPublished() ]);
+        return $this->render('element/show.html.twig', ['element' => $element, 'published' => $element->getPublished(), 'page_title' => $element->getTitle() ]);
     }
 
     /**
-     * Route("/element/unpublish/{id}", name="switch_publish_element")
+     * Route("/creation/unpublish/{id}", name="switch_publish_creation")
      */
-    public function switchPublishElement($id)
+    public function switchPublishCreation($id)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         $user = $this->getUser();
         $element = $this->getDoctrine()
-            ->getRepository(Element::class)
+            ->getRepository(Creation::class)
             ->find($id);
 
         $published = $element->getPublished();
-       // var_dump($published);
+        // var_dump($published);
         if ($published === true) {
             $element->setPublished(false);
         } else {
@@ -147,28 +153,28 @@ class ElementController extends AbstractController
                 'No element found for id '.$id
             );
         }
-
+        $this->addFlash('warning', 'Élément dépublié !');
         //return new Response('Check out this great product: '.$element->getName());
 
         // or render a template
         // in the template, print things with {{ product.name }}
         //return $this->render('element/show.html.twig', ['element' => $element, 'name' => $element->getName(), 'initDate' => $element->getInitDate(), 'image' => $element->getImage()  ]);
-        return $this->listElements();
+        return $this->listCreations();
     }
 
     /**
-     * Route("/element/edit/{id}", name="edit_element")
+     * Route("/creation/edit/{id}", name="edit_creation")
      * @param $id
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function editElement($id, Request $request, FileUploader $fileUploader)
+    public function editCreation($id, Request $request, FileUploader $fileUploader)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         //$user = $this->getUser();
 
         $entityManager = $this->getDoctrine()->getManager();
-        $element = $entityManager->getRepository(Element::class)->find($id);
+        $element = $entityManager->getRepository(Creation::class)->find($id);
         if (!$element) {
             throw $this->createNotFoundException(
                 'No product found for id '.$id
@@ -185,7 +191,7 @@ class ElementController extends AbstractController
             $element->setImage(null);
         }
 
-        $form = $this->createForm(ElementType::class, $element);
+        $form = $this->createForm(CreationType::class, $element);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -198,16 +204,16 @@ class ElementController extends AbstractController
                 $element->setImage($oldFileName);
             }
 
-            /** @var Element $element */
+            /** @var Creation $element */
             $article = $form->getData();
             $entityManager->persist($article);
             $entityManager->flush();
             $this->addFlash('success', 'Élément modifié !');
-            return $this->redirectToRoute('show_element', [
+            return $this->redirectToRoute('creations', [
                 'id' => $element->getId()
             ]);
         }
-        return $this->render('form/create.html.twig', [
+        return $this->render('admin/new-creation.html.twig', [
             'form' => $form->createView(),
             //'miniature' => $oldFileNamePath,
             'id' => $element->getId(),
@@ -215,19 +221,20 @@ class ElementController extends AbstractController
             'edit' => true,
             //'image' => $element->getImage(),
             'button_text' => 'Modifier !',
+            'page_title' => 'Modifier création'
         ]);
     }
 
 
     /**
-     * Route("/element/delete/{id}", name="delete_element")
+     * Route("/admin/creation/delete/{id}", name="delete_creation")
      */
-    public function deleteElement($id, Request $request)
+    public function deleteCreation($id, Request $request)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
 
         $entityManager = $this->getDoctrine()->getManager();
-        $element = $entityManager->getRepository(Element::class)->find($id);
+        $element = $entityManager->getRepository(Creation::class)->find($id);
 
         if (!$element) {
             throw $this->createNotFoundException(
@@ -236,20 +243,20 @@ class ElementController extends AbstractController
         }
         $entityManager->remove($element);
         $entityManager->flush();
-
-        return $this->redirectToRoute('list_element');
+        $this->addFlash('error', 'Élément supprimé !');
+        return $this->redirectToRoute('list_creations');
     }
 
 
     /**
-     * Route("/elements", name="element_list")
+     * Route("/admin/mes-creations", name="list_creations")
      */
-    public function listElements()
+    public function listCreations()
     {
-       // $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
-       // $user = $this->getUser()
+        // $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+        // $user = $this->getUser()
         $elements = $this->getDoctrine()
-            ->getRepository(Element::class)
+            ->getRepository(Creation::class)
             ->findAll();
 
         if (!$elements) {
@@ -262,6 +269,7 @@ class ElementController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('pages/elements-list.html.twig', ['elements' => $elements]);
+       // return $this->render('theme-a/pages/elements-list.html.twig', ['elements' => $elements]);
+        return $this->render('theme-a/admin/list.html.twig', ['elements' => $elements, 'page_title' => 'Mes créations']);
     }
 }
