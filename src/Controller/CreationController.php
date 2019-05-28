@@ -3,8 +3,11 @@ namespace App\Controller;
 
 use App\Entity\Creation;
 use App\Entity\Element;
+use App\Entity\Category;
+
 use App\Form\CreationType;
 use App\Form\ElementType;
+
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,24 +34,11 @@ class CreationController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Ah zut ! Vous n\'avez pas accès à cette page');
         $user = $this->getUser();
 
-        /*
-            $element = new Element();
-            $element->setName($request->request->get('name'));
-            $element->setInitDate(new \DateTime($request->request->get('initDate')));
-            $element->setImage($request->request->get('image')
-               // new File($this->getParameter('images_directory').'/'.$request->request->get('image'))
-            );
-            $form = $this->createFormBuilder($element)
-                // ->add('name', TextType::class, ['label' => 'Nom'])
-                // ->add('initDate', DateType::class, ['label' => 'Date'])
-                //->add('save', SubmitType::class, ['label' => 'Étape suivante'])
-
-                ->getForm();
-    */
-
         $element = new Creation();
+        $category = new Category();
         $form = $this->createForm(CreationType::class, $element);
         $element->setTitle($request->request->get('title'));
+        $category->setName($form->get('category')->getData());
         $element->setAchievementDate(new \DateTime($request->request->get('achievementDate')));
         $element->setPublished(true);
         //$element->setImage($request->request->get('image'));
@@ -57,7 +47,11 @@ class CreationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            //$category->setName($form->get('category'));
+            //$entityObject = $form->get('category')->getData();
+            //$category = $category->get('Id');
             $element = $form->getData();
+            $element->addCategory($category);
 
             $file = new UploadedFile($element->getImage(), $element->getImage());
             if ($file) {
@@ -69,6 +63,7 @@ class CreationController extends AbstractController
             }
 
             $entityManager = $this->getDoctrine()->getManager();
+            //$entityManager->persist($category);
             $entityManager->persist($element);
             $entityManager->flush();
 
@@ -118,7 +113,7 @@ class CreationController extends AbstractController
                 'Impossible de trouver la création n°'.$id
             );
         }
-
+        $categoryName = $element->getCategory()->getName();
         //return new Response('Check out this great product: '.$element->getName());
 
         // or render a template
@@ -127,6 +122,7 @@ class CreationController extends AbstractController
             'creation' => $element,
             'published' => $element->getPublished(),
             'page_title' => $element->getTitle(),
+            'category' => $categoryName,
             'step_title' => 'Créations'
         ]);
     }

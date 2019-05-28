@@ -97,3 +97,34 @@
     top: 4px;
   }
 }
+
+.categories {
+  padding: 6px 10px;
+  border: 1px solid $primary-color;
+  margin-right: 10px;
+  text-transform: uppercase;
+}
+/** FORMS **/
+
+#creation_category {
+  label {
+    padding: 10px;
+  }
+  input[type=checkbox] {
+    visibility: hidden;
+  }
+  input[type=checkbox] + label {
+    cursor: pointer;
+    text-transform: uppercase;
+    color: $primary-color-light;
+  }
+  input[type=checkbox]:checked + label{
+      border: 1px solid $primary-color-light;
+  }
+  input[type=checkbox]:not(:checked) + label{
+    border: 1px solid transparent;
+    &:hover {
+      border: 1px solid $medium-grey;
+    }
+  }
+}

@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
+
 use App\Form\ArticleType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

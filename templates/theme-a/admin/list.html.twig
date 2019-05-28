@@ -40,6 +40,11 @@
                             </td>
                             <td class="col">
                                 <h2 class="title">{{ element.title }}</h2>
+                                <small>
+                                    {% for category in element.category %}
+                                        <span class="categories">{{ category.name }}</span>
+                                    {% endfor %}
+                                </small> <br><br>
                                 {% if date  is defined %}{{ description }}{% endif %}
                             </td>
                             <td class="secondary-content col">

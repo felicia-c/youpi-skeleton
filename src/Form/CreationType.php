@@ -3,6 +3,9 @@ namespace App\Form;
 
 use App\Entity\Creation;
 use App\Entity\Element;
+use App\Entity\Category;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,6 +21,7 @@ class CreationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $group = new Category();
        // $defaultDate = new DateTime('now');
         $builder
             ->add('title', TextType::class, [
@@ -36,6 +40,36 @@ class CreationType extends AbstractType
                 ),
                 'invalid_message' => 'format invalide',
                 ])
+            ->add('category',  EntityType::class, [
+                'class' => Category::class,
+                'label' => 'Catégorie',
+                'multiple' => true,
+                'expanded' => true,
+                'choices' => $group->getName(),
+                /*
+                'choices' => [
+                    new Category('sols'),
+                    new Category('jardin'),
+                    new Category('terrasse'),
+                    new Category('Cat4'),
+                ],*/
+                'choice_label' => function(Category $category, $key, $value) {
+                    return $category->getName();
+                },
+                'choice_attr' => function(Category $category, $key, $value) {
+                    return ['class' => 'category_'.strtolower($category->getName())];
+                },
+                /*
+                'group_by' => function(Category $category, $key, $value) {
+                    // randomly assign things into 2 groups
+                    return rand(0, 1) == 1 ? 'Group A' : 'Group B';
+                },
+
+                'preferred_choices' => function(Category $category, $key, $value) {
+                    return $category->getName() == 'Cat2' || $category->getName() == 'Cat3';
+                },
+                */
+                ])
             ->add('description', TextareaType::class, [
 
                 'attr' => array(
@@ -50,6 +84,15 @@ class CreationType extends AbstractType
 
                 //'empty_data' => 'build/assets/images/leafs.jpg',
                 ])
+            ->add('altImage', TextareaType::class, [
+
+                'label' => 'Que représente cette image ?',
+                'attr' => array(
+                    'placeholder' => '',
+                    'class' => 'form-control',
+                ),
+                'required'   => true,
+            ])
             //->add('save', SubmitType::class, ['label' => 'Étape suivante'])
         ;
     }

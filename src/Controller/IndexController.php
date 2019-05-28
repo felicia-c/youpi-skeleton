@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Creation;
 use App\Entity\Element;
+use App\Entity\Category;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,15 +26,30 @@ class IndexController extends AbstractController
         $articles = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAllPublished();
+        $creations = $this->getDoctrine()
+            ->getRepository(Creation::class)
+            ->findAllPublished();
+
         if (!$elements) {
             throw $this->createNotFoundException(
                 'No element found'
+            );
+        }
+        if (!$articles) {
+            throw $this->createNotFoundException(
+                'Aucun article trouvé'
+            );
+        }
+        if (!$creations) {
+            throw $this->createNotFoundException(
+                'Aucune création trouvée'
             );
         }
         return $this->render('theme-a/index.html.twig', [
             'step' => 1,
             'elements' => $elements,
             'articles' => $articles,
+            'creations' => $creations,
         ]);
     }
 
@@ -90,6 +106,7 @@ class IndexController extends AbstractController
     }
 
     public function creations() {
+        //$category = new Category();
         $elements = $this->getDoctrine()
             ->getRepository(Creation::class)
             ->findAllPublished();
