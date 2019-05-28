@@ -213,11 +213,12 @@ class CreationController extends AbstractController
             $entityManager->persist($article);
             $entityManager->flush();
             $this->addFlash('success', 'Élément modifié !');
-            return $this->redirectToRoute('creations', [
-                'id' => $element->getId()
+            return $this->redirectToRoute('list_creations', [
+                'id' => $element->getId(),
+                'page_title' => 'Mes créations'
             ]);
         }
-        return $this->render('admin/new-creation.html.twig', [
+        return $this->render('theme-a/admin/new-creation.html.twig', [
             'form' => $form->createView(),
             //'miniature' => $oldFileNamePath,
             'id' => $element->getId(),
@@ -274,6 +275,6 @@ class CreationController extends AbstractController
         // or render a template
         // in the template, print things with {{ product.name }}
        // return $this->render('theme-a/pages/elements-list.html.twig', ['elements' => $elements]);
-        return $this->render('theme-a/admin/list.html.twig', ['elements' => $elements, 'page_title' => 'Mes créations']);
+        return $this->render('theme-a/admin/list.html.twig', ['elements' => $elements, 'page_title' => 'Mes créations', 'edit_path' => 'edit_creation']);
     }
 }
