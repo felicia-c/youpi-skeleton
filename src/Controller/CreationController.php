@@ -150,7 +150,6 @@ class CreationController extends AbstractController
         $id = $category->getId();
         $elements = $repo->findByCategory($name);
 
-
         $name = $category->getName();
         if (!$category) {
             throw $this->createNotFoundException(

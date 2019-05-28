@@ -118,7 +118,7 @@ class IndexController extends AbstractController
         //$category = new Category();
         $elements = $this->getDoctrine()
             ->getRepository(Creation::class)
-            ->findAllPublished();
+           ->findAll();
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
