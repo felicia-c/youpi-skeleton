@@ -47,7 +47,7 @@
 </head>
 <body>
 {% include 'theme-a/layout/header.html.twig' %}
-{% if app.request.attributes.get('_route') != 'index' %}
+{% if app.request.attributes.get('_route') != ('index' or 'login') %}
     {% include 'theme-a/layout/breadcrumb.html.twig' %}
 {% endif %}
 {# read and display all flash messages #}

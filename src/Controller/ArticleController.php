@@ -248,5 +248,4 @@ class ArticleController extends AbstractController
         return $this->render('theme-a/pages/blog.html.twig', ['elements' => $elements,
             'page_title' => 'Mes articles']);
     }
-
 }

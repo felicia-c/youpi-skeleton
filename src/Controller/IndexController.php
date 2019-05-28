@@ -21,6 +21,9 @@ class IndexController extends AbstractController
             ->getRepository(Element::class)
             ->findAllPublished();
 
+        $articles = $this->getDoctrine()
+            ->getRepository(Article::class)
+            ->findAllPublished();
         if (!$elements) {
             throw $this->createNotFoundException(
                 'No element found'
@@ -29,8 +32,33 @@ class IndexController extends AbstractController
         return $this->render('theme-a/index.html.twig', [
             'step' => 1,
             'elements' => $elements,
+            'articles' => $articles,
         ]);
     }
+
+/*
+    public function blockArticles()
+    {
+        // $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+        // $user = $this->getUser()
+        $elements = $this->getDoctrine()
+            ->getRepository(Article::class)
+            ->findAll();
+
+        if (!$elements) {
+            throw $this->createNotFoundException(
+                'No element found'
+            );
+        }
+
+        //return new Response('Check out this great product: '.$element->getName());
+
+        // or render a template
+        // in the template, print things with {{ product.name }}
+        return $this->render('theme-a/pages/blog.html.twig', ['elements' => $elements,
+            'page_title' => 'Mes articles']);
+    }
+*/
 /*
     /**
      * Route("/login", name="login")
@@ -92,6 +120,9 @@ class IndexController extends AbstractController
             'elements' => $elements,
         ]);
     }
+
+
+
     public function contact() {
        /* $elements = $this->getDoctrine()
             ->getRepository(Article::class)
