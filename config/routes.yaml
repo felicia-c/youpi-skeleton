@@ -46,7 +46,11 @@ creations:
 list_creations:
     path: /admin/mes-creations
     controller: App\Controller\CreationController::listCreations
-
+show_creation:
+    path: /creations/{id}
+    controller: App\Controller\CreationController::showCreation
+    requirements:
+        id: '\d+'
 new_creation:
     path: /admin/nouvelle-creation
     controller: App\Controller\CreationController::addCreation

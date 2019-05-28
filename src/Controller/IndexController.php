@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Creation;
 use App\Entity\Element;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -90,7 +91,7 @@ class IndexController extends AbstractController
 
     public function creations() {
         $elements = $this->getDoctrine()
-            ->getRepository(Element::class)
+            ->getRepository(Creation::class)
             ->findAllPublished();
 
         if (!$elements) {

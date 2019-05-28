@@ -123,7 +123,12 @@ class CreationController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('element/show.html.twig', ['element' => $element, 'published' => $element->getPublished(), 'page_title' => $element->getTitle() ]);
+        return $this->render('theme-a/pages/show-creation.html.twig', [
+            'creation' => $element,
+            'published' => $element->getPublished(),
+            'page_title' => $element->getTitle(),
+            'step_title' => 'Créations'
+        ]);
     }
 
     /**

@@ -19,6 +19,30 @@ class CreationRepository extends ServiceEntityRepository
         parent::__construct($registry, Creation::class);
     }
 
+/*
+    public function findAll(){
+        return $this->findBy(array(),
+            array('id' => 'DESC'));
+    }
+*/
+    /**
+     * @return Creation[]
+     */
+    public function findAllPublished(): array
+    {
+        // automatically knows to select Element
+        // the "p" is an alias you'll use in the rest of the query
+        $qb = $this->createQueryBuilder('c')
+            ->andWhere('c.published = true')
+            //->setParameter('published', $published)
+            ->orderBy('c.achievement_date', 'DESC')
+            ->getQuery();
+
+        return $qb->execute();
+
+        // to get just one result:
+        // $product = $qb->setMaxResults(1)->getOneOrNullResult();
+    }
     // /**
     //  * @return Creation[] Returns an array of Creation objects
     //  */
