@@ -47,7 +47,7 @@
                                     {% endfor %}
                                 </small> <br><br>
                                 {% endif %}
-                                {% if date  is defined %}{{ description }}{% endif %}
+                                {% if description is defined %}{{ description }}{% endif %}
                             </td>
                             <td class="secondary-content col">
                                 <a href="{{ path(edit_path, { 'id': element.id }) }}" class="">Modifier <i class="material-icons">edit</i></a><br>

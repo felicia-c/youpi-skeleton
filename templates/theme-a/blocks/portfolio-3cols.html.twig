@@ -51,7 +51,9 @@
                                             <div class="row margin-0 project-content">
                                                 <div class="col-md-12 info-head">
                                                     <h3>{{ creation.title }}</h3>
-                                                    <h4>Category</h4>
+                                                    <h4>{% for category in creation.category %}
+                                                            <small class=""> {{ category.name|upper }} </small>
+                                                        {% endfor %}</h4>
                                                 </div>
                                                 <div class="col-md-12 info">
                                                     <p>{{ creation.description|slice(0, 250) ~'...' }}</p>

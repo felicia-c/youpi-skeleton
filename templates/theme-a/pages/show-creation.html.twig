@@ -8,6 +8,13 @@
             <!-- Content -->
             <div class="col-md-12">
                 <h2>{{ creation.title }}</h2>
+                {% if creation.category is defined %}
+                    <small>
+                        {% for category in creation.category %}
+                            <span class="categories">{{ category.name }}</span>
+                        {% endfor %}
+                    </small> <br><br>
+                {% endif %}
                 <!--<h3>Justo duo dolores</h3>-->
                 <p class="lead">
                     <img class="pull-right" src="{{ asset('uploads/' ~ creation.image) }}" alt="">

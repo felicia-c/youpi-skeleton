@@ -113,7 +113,7 @@ class CreationController extends AbstractController
                 'Impossible de trouver la création n°'.$id
             );
         }
-        $categoryName = $element->getCategory()->getName();
+        //$categoryName = $element->getCategory()->getName();
         //return new Response('Check out this great product: '.$element->getName());
 
         // or render a template
@@ -122,7 +122,7 @@ class CreationController extends AbstractController
             'creation' => $element,
             'published' => $element->getPublished(),
             'page_title' => $element->getTitle(),
-            'category' => $categoryName,
+            //'category' => $categoryName,
             'step_title' => 'Créations'
         ]);
     }
