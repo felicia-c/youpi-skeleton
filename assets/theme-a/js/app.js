@@ -1,13 +1,14 @@
-require('jquery');
-
+//require('jquery');
+import '../../../node_modules/jquery/dist/jquery.js';
 //var isotope = require('../../theme-base/extensions/portfolio/isotope');
-
+import '../../../node_modules/isotope-layout/dist/isotope.pkgd.js';
 require('../../theme-base/extensions/fancybox/jquery.fancybox');
 require('../../theme-base/extensions/fancybox/jquery.fancybox.pack');
 require('../../theme-base/extensions/fancybox/jquery.fancybox-media');
 require('../../theme-base/extensions/owlcarousel/owl.carousel');
 import './menu.js';
-import '../../theme-base/extensions/portfolio/isotope';
+
+
 //import'../../theme-base/extensions/portfolio/portfolio';
 
 
@@ -27,24 +28,40 @@ $(document).ready(function() {
         var scrolled = $(window).scrollTop();
         $('.bg').css('height', ((jumboHeight-scrolled) + 60) + 'px');
     }
-parallax();
+    parallax();
     $(window).scroll(function(e){
         //jumboHeight = $('.parallax-block').outerHeight();
         parallax();
     });
+    var portfolio = $('.grid-item');
 
+    if (portfolio.length) {
+        // init Isotope
 
-    // 3 column layout
-    var isotopeContainer2 = $('.isotopeContainer2');
-    //if( !isotopeContainer2.length || !jQuery().isotope ) return;
-    //$win.load(function(){
- /*       isotopeContainer2.isotope({
-            itemSelector: '.isotopeSelector',
+        var $grid = $('.grid').isotope({
+            // options
+            itemSelector: '.grid-item',
+            percentPosition: true,
+            masonry: {
+                columnWidth: '.grid-sizer'
+            }
+        });
+// layout Isotope after each image loads
+        $grid.imagesLoaded().progress(function () {
+            $grid.isotope('layout');
+        });
+/*
+        var grid = document.querySelector('.grid');
+        var iso = new Isotope( grid, {
+            // options...
+            itemSelector: '.grid-item',
             masonry: {
                 columnWidth: 200
             }
         });
-        */
+*/
+    }
+/*
         $('body').on('click', '.isotopeFilters2 a', function(e) {
             console.log('isotope2');
             $('.isotopeFilters2').find('.active').removeClass('active');
@@ -53,7 +70,7 @@ parallax();
             isotopeContainer2.isotope({ filter: filterValue });
             e.preventDefault();
         });
-    //});
+*/
 
     /*
         $('body').on('click', 'a[data-filter]', function(e){

@@ -64,14 +64,15 @@
 {% include 'theme-a/layout/footer.html.twig' %}
 <!-- Scripts -->
 
-<!-- Loads Bootstrap Main JS -->
-<script src="{{ asset('/build/js/bootstrap/bootstrap.js') }}"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="{{ asset('/build/js/bootstrap/ie10-viewport-bug-workaround.js') }}"></script>
-<!-- Initiate Google Maps - For more Infos look into the documentation -->
-<!--<script src="https://maps.googleapis.com/maps/api/js"></script>-->
+<
 
 {% block javascripts %}
+    !-- Loads Bootstrap Main JS -->
+    <script src="{{ asset('/build/js/bootstrap/bootstrap.js') }}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{{ asset('/build/js/bootstrap/ie10-viewport-bug-workaround.js') }}"></script>
+    <!-- Initiate Google Maps - For more Infos look into the documentation -->
+    <!--<script src="https://maps.googleapis.com/maps/api/js"></script>-->
     <script src="{{ asset('/build/js/app.js') }}"></script>
 {% endblock %}
 </body>

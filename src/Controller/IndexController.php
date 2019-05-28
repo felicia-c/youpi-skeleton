@@ -29,6 +29,9 @@ class IndexController extends AbstractController
         $creations = $this->getDoctrine()
             ->getRepository(Creation::class)
             ->findAllPublished();
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
 
         if (!$elements) {
             throw $this->createNotFoundException(
@@ -50,8 +53,11 @@ class IndexController extends AbstractController
             'elements' => $elements,
             'articles' => $articles,
             'creations' => $creations,
+            'categories' => $categories,
         ]);
     }
+
+
 
 /*
     public function blockArticles()
@@ -92,7 +98,9 @@ class IndexController extends AbstractController
         $elements = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAllPublished();
-
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
         if (!$elements) {
             throw $this->createNotFoundException(
                 'No article found'
@@ -102,6 +110,7 @@ class IndexController extends AbstractController
             //'step' => 1,
             'page_title' => 'À propos',
             'about' => $elements,
+            'categories' => $categories,
         ]);
     }
 
@@ -110,6 +119,9 @@ class IndexController extends AbstractController
         $elements = $this->getDoctrine()
             ->getRepository(Creation::class)
             ->findAllPublished();
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
 
         if (!$elements) {
             throw $this->createNotFoundException(
@@ -119,6 +131,7 @@ class IndexController extends AbstractController
         return $this->render('theme-a/pages/creations.html.twig', [
             'page_title' => 'Créations',
             'creations' => $elements,
+            'categories' => $categories,
         ]);
     }
 
@@ -126,7 +139,9 @@ class IndexController extends AbstractController
         $elements = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAllPublished();
-
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
         if (!$elements) {
             throw $this->createNotFoundException(
                 'No article found'
@@ -136,12 +151,16 @@ class IndexController extends AbstractController
             //'step' => 1,
             'page_title' => 'Blog',
             'elements' => $elements,
+            'categories' => $categories,
         ]);
     }
 
 
 
     public function contact() {
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
        /* $elements = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAllPublished();
@@ -154,6 +173,7 @@ class IndexController extends AbstractController
         return $this->render('theme-a/pages/contact.html.twig', [
             //'step' => 1,
            // 'elements' => $elements,
+            'categories' => $categories,
         ]);
     }
 

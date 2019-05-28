@@ -9,6 +9,7 @@ use App\Form\CreationType;
 use App\Form\ElementType;
 
 
+use App\Repository\CreationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -33,7 +34,9 @@ class CreationController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Ah zut ! Vous n\'avez pas accès à cette page');
         $user = $this->getUser();
-
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
         $element = new Creation();
         $category = new Category();
         $form = $this->createForm(CreationType::class, $element);
@@ -85,6 +88,7 @@ class CreationController extends AbstractController
 
         return $this->render('theme-a/admin/new-creation.html.twig', [
             'form' => $form->createView(),
+            'categories' => $categories,
             // 'image' => $element->getImage(),
             'button_text' => 'Valider',
             'step' => 2,
@@ -100,14 +104,16 @@ class CreationController extends AbstractController
 
 
     /**
-     * Route("/element/{id}", name="element_show")
+     * Route("/creations/{id}", name="show_creation")
      */
     public function showCreation($id)
     {
         $element = $this->getDoctrine()
             ->getRepository(Creation::class)
             ->find($id);
-
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
         if (!$element) {
             throw $this->createNotFoundException(
                 'Impossible de trouver la création n°'.$id
@@ -120,12 +126,60 @@ class CreationController extends AbstractController
         // in the template, print things with {{ product.name }}
         return $this->render('theme-a/pages/show-creation.html.twig', [
             'creation' => $element,
+            'categories' => $categories,
             'published' => $element->getPublished(),
             'page_title' => $element->getTitle(),
             //'category' => $categoryName,
             'step_title' => 'Créations'
         ]);
     }
+
+
+    /**
+     * Route("/creations/$name", name="show_creations_category")
+     */
+    public function showCreationsCategory(CreationRepository $repo, $name)
+    {
+        //$category = new Category();
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
+        $category = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findOneBy(array('name' => $name));
+        $id = $category->getId();
+        $elements = $repo->findByCategory($name);
+
+
+        $name = $category->getName();
+        if (!$category) {
+            throw $this->createNotFoundException(
+                'Impossible de trouver la categorie '.$name
+            );
+        }
+        if (!$elements) {
+            throw $this->createNotFoundException(
+                'Impossible de trouver les creations dans  '.$name
+            );
+        }
+        //$categoryName = $element->getCategory()->getName();
+        //return new Response('Check out this great product: '.$element->getName());
+
+        // or render a template
+        // in the template, print things with {{ product.name }}
+        return $this->render('theme-a/pages/creations.html.twig', [
+            'categories' => $categories,
+            'category' => $category,
+            'creations' => $elements,
+            //'published' => $elements->getPublished(),
+           // 'published' => $element->getPublished(),
+            'page_title' => $name,
+            //'category' => $categoryName,
+            'step_title' => 'Créations'
+        ]);
+    }
+
+
 
     /**
      * Route("/creation/unpublish/{id}", name="switch_publish_creation")
@@ -177,6 +231,9 @@ class CreationController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         //$user = $this->getUser();
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
 
         $entityManager = $this->getDoctrine()->getManager();
         $element = $entityManager->getRepository(Creation::class)->find($id);
@@ -224,6 +281,7 @@ class CreationController extends AbstractController
             //'miniature' => $oldFileNamePath,
             'id' => $element->getId(),
             'image' => $oldFileName,
+            'categories' => $categories,
             'edit' => true,
             //'image' => $element->getImage(),
             'button_text' => 'Modifier !',
@@ -265,6 +323,9 @@ class CreationController extends AbstractController
             ->getRepository(Creation::class)
             ->findAll();
 
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
         if (!$elements) {
             throw $this->createNotFoundException(
                 'No element found'
@@ -278,6 +339,7 @@ class CreationController extends AbstractController
        // return $this->render('theme-a/pages/elements-list.html.twig', ['elements' => $elements]);
         return $this->render('theme-a/admin/list.html.twig', [
             'elements' => $elements,
+            'categories' => $categories,
             'page_title' => 'Mes créations',
             'edit_path' => 'edit_creation',
             'publish_path' => 'switch_publish_creation',

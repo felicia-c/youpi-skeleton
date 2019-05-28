@@ -51,6 +51,14 @@ show_creation:
     controller: App\Controller\CreationController::showCreation
     requirements:
         id: '\d+'
+creations_category:
+    path: /creations/{name}
+    controller: App\Controller\CreationController::showCreationsCategory
+    requirements:
+        id: '\d+'
+    #defaults:
+    #    name: {name}
+    #    id: {id}
 new_creation:
     path: /admin/nouvelle-creation
     controller: App\Controller\CreationController::addCreation

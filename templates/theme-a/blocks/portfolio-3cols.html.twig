@@ -11,7 +11,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <h1>Créations</h1>
+
+                            <h1>{{ page_title }}</h1>
                             <!--<div class="filter-container isotopeFilters">
                                 <ul class="list-inline filter">
                                     <li class="active"><a href="#" data-filter="*">All </a><span>/</span></li>
@@ -26,19 +27,20 @@
             </div>
         </div>
 
+
         <!-- 3 Column Portfolio -->
         {% if (color is defined) and color == 'negative' %}
         <div class="portfolio-section port-col sec-alternative" style="background-image: url(/assets/theme-base/images/odd_background.png)">
-            {% else %}
-            <div class="portfolio-section port-col">
-                {% endif %}
+        {% else %}
+        <div class="portfolio-section port-col">
+        {% endif %}
                 <!--<section class="portfolio-section port-col">-->
                 <div class="container">
                 <div class="row">
-                    <div class="isotopeContainer">
-
+                    <div class="grid">
+                        <div class="grid-sizer"></div>
                         {% for creation in creations %}
-                        <div class="col-md-4 isotopeSelector photography">
+                        <div class="{% for category in creation.category %}{{ category.name|lower }} {% endfor %}  grid-item">
                             <article class="">
                                 <figure>
                                     <!-- http://placehold.it/625x450 -->

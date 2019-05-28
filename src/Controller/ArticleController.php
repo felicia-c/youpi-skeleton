@@ -27,6 +27,9 @@ class ArticleController extends AbstractController
      */
     public function addArticle(Request $request,  FileUploader $fileUploader)
     {
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
        // $user = $this->getUser();
 
@@ -77,7 +80,8 @@ class ArticleController extends AbstractController
             'form' => $form->createView(),
             'button_text' => 'Valider',
             'step' => 2,
-            'page_title' => 'Nouvel article'
+            'page_title' => 'Nouvel article',
+            'categories' => $categories,
         ]);
     }
 
@@ -89,7 +93,9 @@ class ArticleController extends AbstractController
         $element = $this->getDoctrine()
             ->getRepository(Article::class)
             ->find($id);
-
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
         if (!$element) {
             throw $this->createNotFoundException(
                 'No element found for id '.$id
@@ -100,8 +106,12 @@ class ArticleController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('theme-a/pages/article.html.twig', ['element' => $element, 'published' => $element->getPublished(),
-            'page_title' => $element->getTitle() ]);
+        return $this->render('theme-a/pages/article.html.twig', [
+            'element' => $element,
+            'published' => $element->getPublished(),
+            'page_title' => $element->getTitle(),
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -148,8 +158,13 @@ class ArticleController extends AbstractController
      */
     public function editArticle($id, Request $request, FileUploader $fileUploader)
     {
+
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         //$user = $this->getUser();
+
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
 
         $entityManager = $this->getDoctrine()->getManager();
         $element = $entityManager->getRepository(Article::class)->find($id);
@@ -189,7 +204,8 @@ class ArticleController extends AbstractController
             $this->addFlash('success', 'Élément modifié !');
             return $this->redirectToRoute('list_articles', [
                 'id' => $element->getId(),
-                'page_title' => 'Mes articles'
+                'page_title' => 'Mes articles',
+                'categories' => $categories,
             ]);
         }
         return $this->render('theme-a/admin/create-article.html.twig', [
@@ -197,6 +213,7 @@ class ArticleController extends AbstractController
             //'miniature' => $oldFileNamePath,
             'id' => $element->getId(),
             'image' => $oldFileName,
+            'categories' => $categories,
             'edit' => true,
             //'image' => $element->getImage(),
             'button_text' => 'Modifier !',
@@ -237,6 +254,9 @@ class ArticleController extends AbstractController
         $elements = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAll();
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
 
         if (!$elements) {
             throw $this->createNotFoundException(
@@ -250,6 +270,7 @@ class ArticleController extends AbstractController
         // in the template, print things with {{ product.name }}
         return $this->render('theme-a/admin/list.html.twig', [
             'elements' => $elements,
+            'categories' => $categories,
             'page_title' => 'Mes articles',
             'edit_path' => 'edit_article',
             'publish_path' => 'switch_publish_article',

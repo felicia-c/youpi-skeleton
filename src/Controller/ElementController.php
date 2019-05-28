@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Element;
 use App\Form\ElementType;
 
@@ -44,6 +45,10 @@ class ElementController extends AbstractController
 */
 
         $element = new Element();
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
+
         $form = $this->createForm(ElementType::class, $element);
         $element->setName($request->request->get('name'));
         $element->setInitDate(new \DateTime($request->request->get('initDate')));
@@ -87,6 +92,7 @@ class ElementController extends AbstractController
             'form' => $form->createView(),
            // 'image' => $element->getImage(),
             'button_text' => 'Valider',
+            'categories' => $categories,
             'step' => 2
         ]);
         /*
@@ -107,6 +113,10 @@ class ElementController extends AbstractController
             ->getRepository(Element::class)
             ->find($id);
 
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
+
         if (!$element) {
             throw $this->createNotFoundException(
                 'No element found for id '.$id
@@ -117,7 +127,11 @@ class ElementController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-         return $this->render('element/show.html.twig', ['element' => $element, 'published' => $element->getPublished() ]);
+         return $this->render('element/show.html.twig', [
+             'element' => $element,
+             'categories' => $categories,
+             'published' => $element->getPublished()
+         ]);
     }
 
     /**
@@ -166,7 +180,9 @@ class ElementController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         //$user = $this->getUser();
-
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
         $entityManager = $this->getDoctrine()->getManager();
         $element = $entityManager->getRepository(Element::class)->find($id);
         if (!$element) {
@@ -212,6 +228,7 @@ class ElementController extends AbstractController
             //'miniature' => $oldFileNamePath,
             'id' => $element->getId(),
             'image' => $oldFileName,
+            'categories' => $categories,
             'edit' => true,
             //'image' => $element->getImage(),
             'button_text' => 'Modifier !',
@@ -251,6 +268,9 @@ class ElementController extends AbstractController
         $elements = $this->getDoctrine()
             ->getRepository(Element::class)
             ->findAll();
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
 
         if (!$elements) {
             throw $this->createNotFoundException(
@@ -262,6 +282,9 @@ class ElementController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('pages/elements-list.html.twig', ['elements' => $elements]);
+        return $this->render('pages/elements-list.html.twig', [
+            'elements' => $elements,
+            'categories' => $categories,
+        ]);
     }
 }

@@ -30,6 +30,7 @@
 }
 .lead img {
   padding: 5px;
+  max-width: 750px;
 }
 .bg {
  // background: url('/assets/example/bg_blueplane.jpg') no-repeat center center;
@@ -85,6 +86,31 @@
   visibility: hidden;
 }
 
+//.grid-item { width: 25%; }
+//.grid-item--width2 { width: 50%; }
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.grid-sizer,
+.grid-item {
+  width: 33.333%;
+}
+
+.grid-item {
+  float: left;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
+
 /** ADMIN **/
 /* list elements */
 .avatar {
@@ -106,6 +132,14 @@
   border: 1px solid $primary-color;
   margin-right: 10px;
   text-transform: uppercase;
+}
+.elements-list {
+  .categories {
+    padding: 1px 0;
+    margin: 4px 10px;
+    border: none;
+    border-bottom: 1px solid $primary-color;
+  }
 }
 /** FORMS **/
 

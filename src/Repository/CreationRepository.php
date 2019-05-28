@@ -43,22 +43,34 @@ class CreationRepository extends ServiceEntityRepository
         // to get just one result:
         // $product = $qb->setMaxResults(1)->getOneOrNullResult();
     }
+
+
+    public function findByCategory($category): array
+    {
+        $qb = $this->createQueryBuilder('creation')
+            ->leftjoin ('creation.category','c')
+            ->where('c.name = :name')
+            ->setParameter('name', $category)
+            ->getQuery();
+
+        return $qb->execute();
+    }
     // /**
     //  * @return Creation[] Returns an array of Creation objects
     //  */
-    /*
+/*
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
+            ->andWhere('c.category = :val')
             ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
+            //->orderBy('c.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+*/
 
     /*
     public function findOneBySomeField($value): ?Creation
