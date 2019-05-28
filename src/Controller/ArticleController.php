@@ -185,8 +185,9 @@ class ArticleController extends AbstractController
             $entityManager->persist($article);
             $entityManager->flush();
             $this->addFlash('success', 'Élément modifié !');
-            return $this->redirectToRoute('show_article', [
-                'id' => $element->getId()
+            return $this->redirectToRoute('list_articles', [
+                'id' => $element->getId(),
+                'page_title' => 'Mes articles'
             ]);
         }
         return $this->render('theme-a/admin/create-article.html.twig', [
@@ -245,7 +246,12 @@ class ArticleController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('theme-a/pages/blog.html.twig', ['elements' => $elements,
-            'page_title' => 'Mes articles']);
+        return $this->render('theme-a/admin/list.html.twig', [
+            'elements' => $elements,
+            'page_title' => 'Mes articles',
+            'edit_path' => 'edit_article',
+            'publish_path' => 'switch_publish_article',
+            'delete_path' => 'delete_article',
+        ]);
     }
 }

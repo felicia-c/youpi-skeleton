@@ -280,6 +280,12 @@ class CreationController extends AbstractController
         // or render a template
         // in the template, print things with {{ product.name }}
        // return $this->render('theme-a/pages/elements-list.html.twig', ['elements' => $elements]);
-        return $this->render('theme-a/admin/list.html.twig', ['elements' => $elements, 'page_title' => 'Mes créations', 'edit_path' => 'edit_creation']);
+        return $this->render('theme-a/admin/list.html.twig', [
+            'elements' => $elements,
+            'page_title' => 'Mes créations',
+            'edit_path' => 'edit_creation',
+            'publish_path' => 'switch_publish_creation',
+            'delete_path' => 'delete_creation',
+        ]);
     }
 }
