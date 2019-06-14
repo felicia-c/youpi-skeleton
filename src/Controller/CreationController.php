@@ -36,7 +36,7 @@ class CreationController extends AbstractController
         $user = $this->getUser();
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
-            ->findAll();
+            ->findAllPublished();
         $element = new Creation();
         $category = new Category();
         $form = $this->createForm(CreationType::class, $element);
@@ -113,7 +113,7 @@ class CreationController extends AbstractController
             ->find($id);
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
-            ->findAll();
+            ->findAllPublished();
         if (!$element) {
             throw $this->createNotFoundException(
                 'Impossible de trouver la création n°'.$id
@@ -124,7 +124,7 @@ class CreationController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('theme-a/pages/show-creation.html.twig', [
+        return $this->render('theme-a/pages/creations/show-creation.html.twig', [
             'creation' => $element,
             'categories' => $categories,
             'published' => $element->getPublished(),
@@ -143,7 +143,7 @@ class CreationController extends AbstractController
         //$category = new Category();
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
-            ->findAll();
+            ->findAllPublished();
         $category = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findOneBy(array('name' => $name));
@@ -166,7 +166,7 @@ class CreationController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('theme-a/pages/creations.html.twig', [
+        return $this->render('theme-a/pages/creations/creations-category.html.twig', [
             'categories' => $categories,
             'category' => $category,
             'creations' => $elements,

@@ -53,6 +53,7 @@ class IndexController extends AbstractController
             'elements' => $elements,
             'articles' => $articles,
             'creations' => $creations,
+            'carousel' => $creations,
             'categories' => $categories,
         ]);
     }
@@ -121,7 +122,8 @@ class IndexController extends AbstractController
            ->findAll();
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
-            ->findAll();
+            ->findAllPublished();
+
 
         if (!$elements) {
             throw $this->createNotFoundException(

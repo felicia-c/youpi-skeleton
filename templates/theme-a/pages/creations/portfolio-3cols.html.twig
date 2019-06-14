@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
 
-                            <h2>{{ page_title }}</h2>
+                            <h2>Domaines d'interventions</h2>
                             <!--<div class="filter-container isotopeFilters">
                                 <ul class="list-inline filter">
                                     <li class="active"><a href="#" data-filter="*">All </a><span>/</span></li>
@@ -37,15 +37,20 @@
                 <!--<section class="portfolio-section port-col">-->
                 <div class="container">
                 <div class="row">
+
                     <div class="grid">
                         <div class="grid-sizer"></div>
-                        {% for creation in creations %}
-                        <div class="{% for category in creation.category %}{{ category.name|lower }} {% endfor %}  grid-item">
+                        {# {% for category in categories %}#}
+                        {% for category in categories %}
+                        <div class="grid-item">
                             <article>
                                 <figure>
                                     <!-- http://placehold.it/625x450 -->
-                                    <img src="{{ asset('uploads/' ~ creation.image) }}" alt="">
-
+                                    {% if category.image %}
+                                    <img src="{{ asset('uploads/' ~ category.image) }}" alt="">
+                                    {% else %}
+                                        <img src="{{ asset('build/assets/theme-a/images/leafs.jpg') }}" alt="">
+                                    {% endif %}
                                     <div class="overlay-background">
                                         <div class="inner"></div>
                                     </div>
@@ -53,14 +58,11 @@
                                         <div class="inner-overlay">
                                             <div class="row margin-0 project-content">
                                                 <div class="col-md-12 info-head">
-                                                    <h3>{{ creation.title }}</h3>
-                                                    <h4>{% for category in creation.category %}
-                                                            <small class=""> {{ category.name|upper }} </small>
-                                                        {% endfor %}</h4>
+                                                    <h3>{{ category.name }}</h3>
                                                 </div>
                                                 <div class="col-md-12 info">
                                                     <p>{#<a title="Project Image" class="fancybox-pop fancybox.image" href="{{ asset('uploads/' ~ creation.image) }}"><i class="fa fa-search fa-border fa-2x"></i></a>#}
-                                                        <a title="Project Link" href="{{ path('show_creation', {'id': creation.id  }) }}"><i class="fa fa-search fa-border fa-2x"></i></a></p>
+                                                        <a title="Project Link" href="{{ path('creations_category', {'name': category.name }) }}"><i class="fa fa-search fa-border fa-2x"></i></a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -97,6 +99,7 @@
                             #}
                         </div>
                         {% endfor %}
+
                        <!--
                         <div class="col-md-4 isotopeSelector photography illustrations">
                             <article class="">
@@ -234,6 +237,7 @@
                 </div>
                 </div>
             </div>
+
 
             <!-- END Columns Portfolio -->
             <!--

@@ -4,12 +4,19 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-md-3 ">
-                <div>
-                    <a href="../index.html.twig">
-                        <img class="footer-logo" src="{{ asset('build/assets/theme-a/images/logo-adrien_rogard.png') }}" alt="logo">
-                    </a>
+            <div class="footer-content">
+                <a href="{{ path('index') }}" class="text-left">
+                    <img class="footer-logo" src="{{ asset('build/assets/theme-a/images/logo-adrien_rogard_negative.png') }}" alt="logo">
+                </a>
+                <div class="text-right col-xs-6 footer2-social-container">
+                    <p>&copy; Adrien Rogard {{ "now"|date("Y") }}</p>
                 </div>
+            </div>
+
+        </div>
+    </div>
+</footer>
+                {#
                 <div>
                     <address class="margin-bottom-30">
                         <p>Adrien ROGARD <br/>
@@ -24,11 +31,13 @@
                         -->
                 </div>
                 <div>
-                    <a href="https://www.adrienrogard.com">www.adrienrogard.com</a>
+                    <a href="https://www.adrienrogard.com">www.adrien-rogard.fr</a>
                     <br/>
-                    <a href="mailto:contact@adrienrogard.com">contact@adrienrogard.com</a>
+                    <a href="mailto:contact@adrienrogard.com">contact@adrien-rogard.fr</a>
                 </div>
-            </div>
+            </div>#
+            }
+            <!--
             <div class="col-md-3 footer-menu">
                 <h4>En bref</h4>
                 <p>Plus de <strong>10 ans d'expérience en paysagisme</strong> à Paris et en Île-de-France, <strong>création d'espaces verts</strong>, <strong>végatalisation de terrasses</strong> et <strong>aménagement de jardins</strong>.</p>
@@ -37,6 +46,7 @@
                     <button class="btn btn-primary">En savoir +</button>
                 </a>
             </div>
+
             <div class="col-md-3 footer-blog">
                 <h4>Ajouts récents</h4>
                 <ul>
@@ -75,10 +85,8 @@
                     </a>
                 </ul>
             </div>
+-->
 
-        </div>
-    </div>
-</footer>
 
 <!-- FOOTER 2 -->
 {#

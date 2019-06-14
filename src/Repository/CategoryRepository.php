@@ -18,7 +18,23 @@ class CategoryRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Category::class);
     }
+    /**
+     * @return Category[]
+     */
+    public function findAllPublished(): array
+    {
+        // automatically knows to select Element
+        // the "p" is an alias you'll use in the rest of the query
+        $qb = $this->createQueryBuilder('c')
+            ->andWhere('c.publish = true')
+            ->orderBy('c.weight', 'ASC')
+            ->getQuery();
 
+        return $qb->execute();
+
+        // to get just one result:
+        // $product = $qb->setMaxResults(1)->getOneOrNullResult();
+    }
 
     // /**
     //  * @return Category[] Returns an array of Category objects

@@ -1,0 +1,44 @@
+{% extends 'theme-a/base.html.twig' %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block body %}
+<div class="page-section">
+    <div class="container">
+
+        {#  {% include 'theme-a/pages/creations/portfolio-3cols.html.twig' %}  #}
+        <div id="fancybox-lightbox">
+            <div class="margin-bottom-30">
+                <h3>Projets</h3>
+                <div class="row">
+                    {% for project in creations %}
+                        <div class="col-md-4">
+                            <a class="fancybox fancybox.image" rel="gallery1" href="{{ asset('uploads/' ~ project.image) }}" title="{{ project.title }}">
+                                <img src="{{ asset('uploads/' ~ project.image) }}" alt="" class="img-responsive" />
+                            </a>
+                        </div>
+                    {% endfor %}
+                    <div class="col-md-4">
+                        <a class="fancybox fancybox.image" rel="gallery1" href="http://placehold.it/1900x800" title="Title Slide 2" class="img-responsive">
+                            <img src="http://placehold.it/1900x800" alt="" class="img-responsive" />
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="fancybox fancybox.image" rel="gallery1" href="http://placehold.it/1900x800" title="Title Slide 3" class="img-responsive">
+                            <img src="http://placehold.it/1900x800" alt="" class="img-responsive" />
+                        </a>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        $(".fancybox").fancybox({
+                            openEffect: 'elastic',
+                            closeEffect: 'elastic'
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

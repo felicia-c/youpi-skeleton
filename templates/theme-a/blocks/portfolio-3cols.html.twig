@@ -44,8 +44,11 @@
                             <article>
                                 <figure>
                                     <!-- http://placehold.it/625x450 -->
+                                    {% if creation.image %}
                                     <img src="{{ asset('uploads/' ~ creation.image) }}" alt="">
-
+                                    {% else %}
+                                    <img src="{{ asset('build/assets/theme-a/images/leafs.jpg') }}" alt="">
+                                    {% endif %}
                                     <div class="overlay-background">
                                         <div class="inner"></div>
                                     </div>

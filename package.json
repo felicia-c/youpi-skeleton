@@ -19,6 +19,7 @@
         "isotope-layout": "^3.0.6",
         "jquery": "^2.x",
         "materialize-css": "^1.0.0",
-        "sass-loader": "^7.1.0"
+        "sass-loader": "^7.1.0",
+        "slick-carousel": "^1.8.1"
     }
 }

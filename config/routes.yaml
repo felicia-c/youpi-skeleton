@@ -54,8 +54,8 @@ show_creation:
 creations_category:
     path: /creations/{name}
     controller: App\Controller\CreationController::showCreationsCategory
-    requirements:
-        id: '\d+'
+    #requirements:
+    #    id: '\d+'
     #defaults:
     #    name: {name}
     #    id: {id}

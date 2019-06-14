@@ -8,12 +8,22 @@
     {% include 'theme-a/layout/header/picture-full-title-inside.html.twig' %}
     <!-- Call to Action -->
     {% include 'theme-a/blocks/call-to-action-band.html.twig' %}
-
-
+    <!-- intro -->
+    <section class="page-section padding-60" id="intro">
+        <div class="container intro">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="title-section"><span class="title-regular">Votre <strong>paysagiste</strong></span><br/>à Paris et en Île-de-France.</h1>
+                    <hr class="title-underline-center">
+                    <p class="lead">Plus de 10 années d'expérience dans la création et rénovation de terrasses et jardins, <br/> installation d'arrosage automatique et éclairages d'extérieur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Intro -->
     {% set vars = {'color': 'negative'} %}
-{% include 'theme-a/blocks/intro.html.twig'%}
+    {# {% include 'theme-a/blocks/intro.html.twig'%} #}
 
     <!-- Call to Action Primary -->
     <section class="cta cta-primary">
@@ -21,15 +31,16 @@
             <div class="row">
                 <div class="col-md-6">
                     <h2>Réalisez <span>votre projet !</span></h2>
-                    <p>Que vous souhaitiez végétaliser votre terrasse, installer un arrosage automatique ou un renseignement, <strong><a href="{{ path('contact') }}" class="text-white">parlons-en !</a></strong> Nous répondons à vos questions et <strong><a href="{{ path('contact') }}"class="text-white" >demandes de devis</a></strong>.</p>
+                    <p>Que vous souhaitiez végétaliser votre terrasse, installer un arrosage automatique ou un renseignement, <strong><a href="{{ path('contact') }}" class="text-white">parlons-en !</a></strong> Nous répondons à <strong><a href="{{ path('contact') }}"class="text-white" >vos questions et demandes de devis</a></strong>.</p>
+
                 </div>
                 <div class="col-md-2 col-md-push-4 cta-button">
-                    <a href="#demos" class="btn btn-primary" style="padding: 25px 15px; font-weight:bold; font-size:larger">Contactez-nous</a>
+                    <a href="#contact" class="btn btn-primary" style="padding: 25px 15px; font-weight:bold; font-size:larger">Demander un devis</a>
                 </div>
             </div>
         </div>
     </section>
-
+{#
     <!-- About -->
 {% include 'theme-a/blocks/about.html.twig' %}
 
@@ -121,15 +132,51 @@
 
         </div>
     </section>
-
+#}
     <!-- Features -->
 {# {% include 'theme-a/blocks/features.html.twig' %} #}
 
 <!-- Full Spotlight left-->
-{% include 'theme-a/blocks/full-spotlight-left.html.twig' %}
+    <section class="page-section-no-padding">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="container col-md-6">
+                    <div class="row">
+                        <div class="col-md-7 col-md-offset-4 spotlight-container">
+                            <h2 class="title-section"><span class="title-regular">TERRASSES</span><br/>& JARDINS</h2>
+                            <hr class="title-underline" />
+                            <p>
+                                Depuis plus de 10 ans, Adrien Rogard se spécialise dans la <strong>création d'espaces verts</strong>, la <strong>végatalisation de terrasses</strong> et l'<strong>aménagement de jardins</strong>. Avec passion, il redonne vie aux magnifiques terrasses privées qu'offrent les toits de Paris et réveille les jardins endormis d'Île-de-France.
+                            </p>
+                            <!--<a href="#" class="btn btn-primary">More Information</a>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 spotlight-img-cont" style="background-image: url({{ asset('build/assets/theme-a/images/terrasse-sq.jpg') }}); "> </div>
+            </div>
+        </div>
+    </section>
+
 
 <!-- Full Spotlight right-->
-{% include 'theme-a/blocks/full-spotlight-right.html.twig' %}
+    <section class="page-section-no-padding">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="container col-md-6 col-md-push-6">
+                    <div class="row">
+                        <div class="col-md-7 col-md-offset-1 spotlight-container">
+                            <h2 class="title-section"><span class="title-regular">ARROSAGE</span><br/>AUTOMATIQUE</h2>
+                            <hr class="title-underline" />
+                            <p>
+                                Pour garantir la durée de vie de vos plantes, nous réalisons également l'installation de systèmes d'<strong>arrossage automatique</strong> sur terrasses jardins et balcons. Vous avez une arrivée d'eau ? L'installation peut se faire en 1 jour à peine !</p>
+                            <!--<a href="#" class="btn btn-primary">More Information</a>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-pull-6 spotlight-img-cont" style="background-image: url(http://placehold.it/647x431); "> </div>
+            </div>
+        </div>
+    </section>
 
 <!-- Our Services -->
 {# {% include 'theme-a/blocks/services.html.twig' %} #}
@@ -144,15 +191,17 @@
 {# {% include 'theme-a/blocks/image-big-cta.html.twig' %} #}
 
 
-
+{#
 <!-- Left Spotlight-->
 {% include 'theme-a/blocks/left-spotlight.html.twig' %}
 
 <!-- RIGHT SPOTLIGHT-->
 {% include 'theme-a/blocks/right-spotlight.html.twig' %}
+#}
+
 
 <!-- VIDEO -->
-{% include 'theme-a/blocks/video.html.twig' %}
+{# {% include 'theme-a/blocks/video.html.twig' %} #}
 
 
 
@@ -163,11 +212,82 @@
 {# {% include 'theme-a/blocks/pictures-socials-hover.html.twig' %} #}
 
     <!-- BLOG/LATEST NEWS-->
-    {% include 'theme-a/blocks/articles-list.html.twig' %}
+{#    {% include 'theme-a/blocks/articles-list.html.twig' %} #}
+
+
+
+    <!-- CAROUSEL -->
+    {#
+    <div id="carousel-header" class="carousel slide">
+            {% set i = 0 %}
+            <!-- Indicators -->
+            <ol class="carousel-indicators hidden-xs">
+                {% for element in carousel %}
+                    {% set i = i + 1 %}
+                    <li data-target="#carousel-header" data-slide-to="{{ i - 1 }}" class=" {% if i == 1 %}active{% endif %}"></li>
+                {% endfor %}
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                {% set y = 0 %}
+                {% for element in carousel %}
+                    {% set y = y + 1 %}
+                    <div class="item {% if y == 1 %} active{% endif %}">
+                        <div>
+                            {% if element.image %}
+                                <img class="img-responsive img-full" data-lazy=="{{ asset('uploads/' ~ element.image) }}" alt="">
+                            {% else %}
+                                <img class="img-responsive img-full" data-lazy=="{{ asset('build/assets/theme-a/images/leafs.jpg') }}" alt="">
+                            {% endif %}
+                        </div>
+
+                        <div class="carousel-caption">
+                            <h3>{{ element.title }}</h3>
+                            <p>{{ element.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-header" data-slide="prev">
+                <span class="icon-prev"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-header" data-slide="next">
+                <span class="icon-next"></span>
+            </a>
+        </div>
+    #}
+    <div class="band band-secondary"></div>
+    <section class="page-section padding-60">
+        <div class="container">
+            <div class="row">
+                <h2 class="title-section"><span class="title-regular">LES</span><br/>CRÉATIONS</h2>
+                <hr class="title-underline" />
+                <div class="index-carousel">
+                {% for element in carousel %}
+                    <div >
+                        <div class="">
+                            {% if element.image %}
+                                <img class="img-responsive" data-lazy="{{ asset('uploads/' ~ element.image) }}" alt="">
+                            {% else %}
+                                <img class="img-responsive " data-lazy="{{ asset('build/assets/theme-a/images/leafs.jpg') }}" alt="">
+                            {% endif %}
+                        </div>
+                        <div class="slide-content">
+                            <h3>{{ element.title }}</h3>
+                            <p>{{ element.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </section>
 
     <!-- Highlighted Testmonial -->
     {% include 'theme-a/blocks/testimonial.html.twig' %}
-
     <!-- Contact Us -->
     {% include 'theme-a/blocks/contact.html.twig' %}
 

@@ -1,5 +1,6 @@
 //require('jquery');
 import '../../../node_modules/jquery/dist/jquery.js';
+require('slick-carousel/slick/slick');
 //var isotope = require('../../theme-base/extensions/portfolio/isotope');
 import '../../../node_modules/isotope-layout/dist/isotope.pkgd.js';
 require('../../theme-base/extensions/fancybox/jquery.fancybox');
@@ -33,6 +34,15 @@ $(document).ready(function() {
         //jumboHeight = $('.parallax-block').outerHeight();
         parallax();
     });
+
+
+    $('.index-carousel').slick({
+        lazyLoad: 'ondemand',
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        dots: true,
+    });
+
     var portfolio = $('.grid-item');
 
     if (portfolio.length) {
