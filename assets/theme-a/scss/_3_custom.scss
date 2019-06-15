@@ -10,6 +10,13 @@ body {
 .orange-text {
   color: darkorange;
 }
+
+@media (max-width: 640px){
+  .title-section {
+    font-size: 3.2rem;
+    line-height: 3.5rem;
+  }
+}
 .band{
   width: 100%;
   padding:20px;
@@ -21,6 +28,9 @@ body {
 .logo {
   transform: scale(1.25);
   transition: transform ease-in 0.5s;
+  @media (max-width: 640px) {
+    transform: none;
+  }
 }
 .top-nav-collapse {
   .logo {
@@ -38,6 +48,13 @@ body {
     }
   }
 }
+
+.cta h2 {
+  @media (max-width: 640px) {
+    font-size: 4.5rem;
+  }
+}
+
 .lead img {
   padding: 5px;
   max-width: 750px;
@@ -55,6 +72,9 @@ body {
   transition: top ease-in 0.5s;
   top: 100px;
  // transition: height ease-in 1s;
+  @media (max-width: 640px) {
+    top: unset;
+  }
   &.parallax-scrolled {
     //height: 550px;
    // transition: top ease-in 0.5s;
@@ -64,9 +84,12 @@ body {
 }
 
 .flash {
+  background: $white;
+  padding: 15px;
+  width: 100%;
   position: relative;
-  top: 30px;
-  margin: 30px 50px;
+  //top: 30px;
+  //margin: 30px 50px;
   text-align: center;
   font-size: 4rem;
   &.flash-success {
@@ -80,6 +103,20 @@ body {
   }
 }
 
+#intro {
+  @media (max-width: 640px) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    .title-section {
+      font-size: 20px;
+      line-height: 28px;
+    }
+    .lead {
+      font-size: 1.5rem;
+      line-height: 1.6rem;
+    }
+  }
+}
 .index-carousel {
     .slick-slide {
       margin: 10px;
@@ -87,11 +124,18 @@ body {
     .slide-content {
       padding-top: 15px;
     }
+  .slick-dots li button:before {
+    color: $primary-color;
+    font-size: 16px;
+  }
+  .slick-dots li.slick-active button:before {
+    color: $secondary-color;
+  }
 }
 
 .parallax-block {
  // height: 100%;
-  height: 550px;
+ // height: 550px;
   background:transparent;
   background:none;
   .intro-text {
@@ -106,9 +150,18 @@ body {
       font-style: italic;
       font-size: 40px;
       font-weight: 400;
-      line-height: 40px;
+      line-height: 4rem;
       margin-bottom: 25px;
-
+      @media (max-width: 640px) {
+        font-size: 2rem;
+        line-height: 2.2rem;
+        margin-bottom: 10px;
+      }
+      @media (max-width: 360px) {
+        font-size: 1.7rem;
+        line-height: 2rem;
+        margin-bottom: 10px;
+      }
     }
     .intro-heading h1 {
       font-family: inherit;
@@ -116,7 +169,12 @@ body {
       font-size: 75px;
       //line-height: 75px;
       line-height: 10px;
-
+      @media (max-width: 640px) {
+        font-size: 5.3rem;
+      }
+      @media (max-width: 360px) {
+        font-size: 4.3rem;
+      }
 
     }
     .intro-heading strong {
@@ -129,7 +187,14 @@ body {
       padding: 14px 45px;
       margin-top: 60px;
       margin-bottom: 50px;
-
+      @media (max-width: 640px) {
+        font-size: 1.8rem;
+        padding: 1.4rem 15px;
+        margin-top: 20px;
+      }
+      @media (max-width: 360px) {
+        font-size: 1.5rem;
+      }
     }
   }
 }
@@ -200,6 +265,15 @@ body {
 #contact {
   .row {
     display: flex;
+    @media (max-width: 640px) {
+      .col-md-6.col-md-push-6 {
+        padding: 0;
+      }
+      .contact-container{
+        padding-top: 30px;
+        padding-bottom: 30px;
+      }
+    }
   }
 }
 .portfolio-section {
@@ -265,5 +339,12 @@ footer {
     width: 100%;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 640px) {
+        flex-direction: column;
+      .footer2-social-container {
+        width: 100%;
+        text-align: center;
+      }
+    }
   }
 }

@@ -49,7 +49,7 @@ class Creation
     protected $published;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="creations")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="creations", cascade={"persist"})
      */
     private $category;
 

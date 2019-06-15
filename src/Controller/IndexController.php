@@ -5,6 +5,7 @@ use App\Entity\Article;
 use App\Entity\Creation;
 use App\Entity\Element;
 use App\Entity\Category;
+use App\Form\ContactType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +18,7 @@ class IndexController extends AbstractController
     /**
      * Route("/", name="home")
      */
-    public function index()
+    public function index(Request $request, \Swift_Mailer $mailer)
     {
         $elements = $this->getDoctrine()
             ->getRepository(Element::class)
@@ -33,6 +34,29 @@ class IndexController extends AbstractController
             ->getRepository(Category::class)
             ->findAll();
 
+        $formContact = $this->createForm(ContactType::class);
+        $formContact->handleRequest($request);
+
+           if ($formContact->isSubmitted() && $formContact->isValid()) {
+
+               $contactFormData = $formContact->getData();
+
+               dump($contactFormData);
+               $message = (new \Swift_Message('Un nouveau message ! Youpi !'))
+                   ->setFrom($contactFormData['from'])
+                   ->setTo('adrienrogard@gmail.com')
+                   ->setBody(
+                       //$contactFormData['name'],
+                       $contactFormData['message'],
+                       'text/plain'
+                   );
+
+               $mailer->send($message);
+               $this->addFlash('success', 'Votre message a été envoyé !');
+
+               return $this->redirectToRoute('index');
+
+           }
         if (!$elements) {
             throw $this->createNotFoundException(
                 'No element found'
@@ -55,6 +79,7 @@ class IndexController extends AbstractController
             'creations' => $creations,
             'carousel' => $creations,
             'categories' => $categories,
+            'contact' => $formContact->createView(),
         ]);
     }
 

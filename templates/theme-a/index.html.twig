@@ -13,7 +13,7 @@
         <div class="container intro">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h1 class="title-section"><span class="title-regular">Votre <strong>paysagiste</strong></span><br/>à Paris et en Île-de-France.</h1>
+                    <h3 class="title-section"><span class="title-regular">Votre <strong>paysagiste</strong></span><br/>à Paris et en Île-de-France.</h3>
                     <hr class="title-underline-center">
                     <p class="lead">Plus de 10 années d'expérience dans la création et rénovation de terrasses et jardins, <br/> installation d'arrosage automatique et éclairages d'extérieur.</p>
                 </div>
@@ -289,6 +289,57 @@
     <!-- Highlighted Testmonial -->
     {% include 'theme-a/blocks/testimonial.html.twig' %}
     <!-- Contact Us -->
-    {% include 'theme-a/blocks/contact.html.twig' %}
+{# {% include 'theme-a/blocks/contact.html.twig' %} #}
+    <section id="contact" class="page-section-no-padding">
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="col-md-6 col-md-push-6">
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col-md-6 contact-container">
+                                <h2 class="title-section"><span class="title-regular">CONTACTER</span><br/>PAR MESSAGE</h2>
+                                <hr class="title-underline" />
+                                <p>
+                                    Maecenas luctus nisi in sem fermentum blat. In nec elit solliudin, elementum, dictum pur quam volutpat suscipit antena.
+                                </p>
+                                {{ form_start(contact) }}
+                                <div class="form-group">
+                                    <label for="contact_name">{{ form_label(contact.name) }}</label>
+                                    {{ form_widget(contact.name) }}
+                                    <span class="helper-text" data-error="Champ obligatoire"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact_email">{{ form_label(contact.from) }}</label>
+                                    {{ form_widget(contact.from) }}
+                                    <span class="helper-text" data-error="Champ obligatoire"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact_message">{{ form_label(contact.message) }}</label>
+                                    {{ form_widget(contact.message) }}
+                                    <span class="helper-text" data-error="Champ obligatoire"></span>
+                                </div>
+                                <button type="submit" class="btn btn-primary">ENVOYER <i class="fa fa-envelope"></i></button>
+                                {{ form_end(contact) }}
+                                <!--
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="usr" placeholder="NAME">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="email" placeholder="EMAIL">
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="5" id="message" placeholder="MESSAGE"></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary">SEND <i class="fa fa-envelope"></i></button>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'theme-a/blocks/coordonnees.html.twig' %}
+            </div>
+        </div>
+    </section>
+
 
 {% endblock %}

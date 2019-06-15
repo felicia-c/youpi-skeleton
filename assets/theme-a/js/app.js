@@ -38,9 +38,41 @@ $(document).ready(function() {
 
     $('.index-carousel').slick({
         lazyLoad: 'ondemand',
-        slidesToShow: 3,
+        slidesToShow: 1,
         slidesToScroll: 1,
         dots: true,
+        nav: true,
+        mobileFirst: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ],
+    });
+    $(window).on('resize', function() {
+       // if ($('.slider:not(.no-display)').length) {
+            $('.index-carousel').slick('init');
+        //}
     });
 
     var portfolio = $('.grid-item');
