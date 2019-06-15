@@ -70,12 +70,18 @@ body {
   //top:0;
   left:0;
  // background-position: center;
-  background-size: cover !important;
+ // background-size: cover !important;
+  background-position: top center!important;
+  background-size: unset !important;
   z-index: -1;
   transition: top ease-in 0.5s;
   top: 60px;
   @media (max-width: 640px) {
     top: 60px;
+    //background-size: cover !important;
+    background-size: unset !important;
+    background-position: top right!important;
+
   //  height: 400px;
   }
  // transition: height ease-in 1s;
@@ -88,7 +94,7 @@ body {
    // transition: top ease-in 0.5s;
     top: 60px;
     @media (max-width: 640px) {
-      top: 0px;
+     // top: 0px;
     }
   }
 }
@@ -287,6 +293,9 @@ body {
 #contact {
   .row {
     display: flex;
+    textarea.form-control {
+      min-height:200px;
+    }
     @media (max-width: 640px) {
       .col-md-6.col-md-push-6 {
         padding: 0;
