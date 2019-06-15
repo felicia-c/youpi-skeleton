@@ -26,7 +26,7 @@ body {
   color: $white;
 }
 .logo {
-  transform: scale(1.25);
+  transform: scale(1.1);
   transition: transform ease-in 0.5s;
   @media (max-width: 640px) {
     transform: none;
@@ -53,6 +53,9 @@ body {
   @media (max-width: 640px) {
     font-size: 4.5rem;
   }
+  @media (max-width: 360px) {
+    font-size: 3.6rem;
+  }
 }
 
 .lead img {
@@ -70,16 +73,23 @@ body {
   background-size: cover !important;
   z-index: -1;
   transition: top ease-in 0.5s;
-  top: 100px;
- // transition: height ease-in 1s;
+  top: 60px;
   @media (max-width: 640px) {
-    top: unset;
+    top: 60px;
+  //  height: 400px;
+  }
+ // transition: height ease-in 1s;
+  @media (max-width: 360px) {
+    top: 60px;
+    height: 400px;
   }
   &.parallax-scrolled {
     //height: 550px;
    // transition: top ease-in 0.5s;
     top: 60px;
-
+    @media (max-width: 640px) {
+      top: 0px;
+    }
   }
 }
 
@@ -104,16 +114,28 @@ body {
 }
 
 #intro {
+  z-index: 10;
+  background: white;
+  .title-section {
+    font-size: 4.2rem;
+    line-height: 5.2rem;
+  }
   @media (max-width: 640px) {
     padding-top: 30px;
     padding-bottom: 30px;
-    .title-section {
+    /*.title-section {
       font-size: 20px;
       line-height: 28px;
-    }
+    }*/
     .lead {
       font-size: 1.5rem;
       line-height: 1.6rem;
+    }
+  }
+  @media (max-width: 360px) {
+    .title-section {
+      font-size: 20px;
+      line-height: 28px;
     }
   }
 }
