@@ -17,6 +17,9 @@ body {
     line-height: 3.5rem;
   }
 }
+.navbar {
+  padding: 10px 0;
+}
 .band{
   width: 100%;
   padding:20px;
@@ -72,7 +75,7 @@ body {
  // background-position: center;
  // background-size: cover !important;
   background-position: top center!important;
-  background-size: unset !important;
+  background-size: cover !important;
   z-index: -1;
   transition: top ease-in 0.5s;
   top: 60px;
@@ -291,6 +294,29 @@ body {
 }
 
 #contact {
+  background:$white;
+  z-index:10;
+  input, textarea {
+    border: 1px solid transparent;
+    box-shadow: none;
+    &:hover {
+      border: 1px solid $secondary-color;
+    }
+    &:focus {
+      border: 1px solid $primary-color;
+    }
+  }
+
+  button.btn {
+    padding: 9px 18px;
+    float: right;
+    i {
+      margin-left: 4px;
+    }
+    &:hover, &:focus {
+      border-color: $primary-color-light;
+    }
+  }
   .row {
     display: flex;
     textarea.form-control {
