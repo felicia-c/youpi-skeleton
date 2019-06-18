@@ -33,7 +33,7 @@ class SiteController extends AbstractController
      */
     public function showSiteInfos()
     {
-        $siteInfos = new Site();
+        //$siteInfos = new Site();
         $siteInfos = $this->getDoctrine()
         ->getRepository(Site::class)
         ->find(1);
@@ -150,6 +150,11 @@ class SiteController extends AbstractController
             ->getRepository(Category::class)
             ->findAll();
         */
+        $siteInfosActual = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
+
+
         $entityManager = $this->getDoctrine()->getManager();
         $siteInfos = $entityManager->getRepository(Site::class)->find(1);
         if (!$siteInfos) {
@@ -163,6 +168,11 @@ class SiteController extends AbstractController
         } else {
             $oldFileName = null;
         }
+        if ( $siteInfos->getHeaderBgImage() !== null) {
+            $oldFileName_headerBgImage = $siteInfos->getHeaderBgImage();
+        } else {
+            $oldFileName_headerBgImage = null;
+        }
 
 
         //$oldFileNamePath = $this->getParameter('images_directory').'/'.$oldFileName;
@@ -172,18 +182,32 @@ class SiteController extends AbstractController
         } else {
             $siteInfos->setLogo(null);
         }
+        if ($oldFileName_headerBgImage != null ) {
+            $siteInfos->setHeaderBgImage(new File($this->getParameter('images_directory').'/'.$oldFileName_headerBgImage));
+        } else {
+            $siteInfos->setHeaderBgImage(null);
+        }
 
         $form = $this->createForm(SiteType::class, $siteInfos);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
             $file = $siteInfos->getLogo();
+            $file_headerBgImage = $siteInfos->getHeaderBgImage();
             if ($file) {
                 $fileName = $fileUploader->upload($file);
                 $siteInfos->setLogo($fileName);
 
             } else {
                 $siteInfos->setLogo($oldFileName);
+            }
+
+            if ($file_headerBgImage) {
+                $fileName_headerBgImage = $fileUploader->upload($file_headerBgImage);
+                $siteInfos->setHeaderBgImage($fileName_headerBgImage);
+
+            } else {
+                $siteInfos->setHeaderBgImage($oldFileName_headerBgImage);
             }
 
             /** @var Creation $siteInfos */
@@ -197,10 +221,13 @@ class SiteController extends AbstractController
             ]);
         }
         return $this->render('theme-a/admin/edit-infos.html.twig', [
+
             'form' => $form->createView(),
+            'site' => $siteInfosActual,
             //'miniature' => $oldFileNamePath,
             //'id' => $element->getId(),
-            'image' => $oldFileName,
+            'logo' => $oldFileName,
+            'header_bgImage' => $oldFileName_headerBgImage,
             //'categories' => $categories,
             'edit' => true,
             //'image' => $element->getImage(),

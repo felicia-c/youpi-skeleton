@@ -4,6 +4,8 @@ namespace App\Controller;
 use App\Entity\Creation;
 use App\Entity\Element;
 use App\Entity\Category;
+use App\Entity\Site;
+
 
 use App\Form\CreationType;
 use App\Form\ElementType;
@@ -34,6 +36,9 @@ class CreationController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Ah zut ! Vous n\'avez pas accès à cette page');
         $user = $this->getUser();
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAllPublished();
@@ -87,6 +92,7 @@ class CreationController extends AbstractController
 
 
         return $this->render('theme-a/admin/new-creation.html.twig', [
+            'site' => $siteInfos,
             'form' => $form->createView(),
             'categories' => $categories,
             // 'image' => $element->getImage(),
@@ -111,6 +117,9 @@ class CreationController extends AbstractController
         $element = $this->getDoctrine()
             ->getRepository(Creation::class)
             ->find($id);
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAllPublished();
@@ -125,6 +134,7 @@ class CreationController extends AbstractController
         // or render a template
         // in the template, print things with {{ product.name }}
         return $this->render('theme-a/pages/creations/show-creation.html.twig', [
+            'site' => $siteInfos,
             'creation' => $element,
             'categories' => $categories,
             'published' => $element->getPublished(),
@@ -144,6 +154,9 @@ class CreationController extends AbstractController
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAllPublished();
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $category = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findOneBy(array('name' => $name));
@@ -167,6 +180,7 @@ class CreationController extends AbstractController
         // or render a template
         // in the template, print things with {{ product.name }}
         return $this->render('theme-a/pages/creations/creations-category.html.twig', [
+            'site' => $siteInfos,
             'categories' => $categories,
             'category' => $category,
             'creations' => $elements,
@@ -233,7 +247,9 @@ class CreationController extends AbstractController
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
-
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $entityManager = $this->getDoctrine()->getManager();
         $element = $entityManager->getRepository(Creation::class)->find($id);
         if (!$element) {
@@ -276,6 +292,7 @@ class CreationController extends AbstractController
             ]);
         }
         return $this->render('theme-a/admin/new-creation.html.twig', [
+            'site' => $siteInfos,
             'form' => $form->createView(),
             //'miniature' => $oldFileNamePath,
             'id' => $element->getId(),
@@ -321,7 +338,9 @@ class CreationController extends AbstractController
         $elements = $this->getDoctrine()
             ->getRepository(Creation::class)
             ->findAll();
-
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
@@ -337,6 +356,7 @@ class CreationController extends AbstractController
         // in the template, print things with {{ product.name }}
        // return $this->render('theme-a/pages/elements-list.html.twig', ['elements' => $elements]);
         return $this->render('theme-a/admin/list.html.twig', [
+            'site' => $siteInfos,
             'elements' => $elements,
             'categories' => $categories,
             'page_title' => 'Mes créations',

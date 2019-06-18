@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class IndexController extends AbstractController
 {
+
     /**
      * Route("/", name="home")
      */
@@ -126,6 +127,9 @@ class IndexController extends AbstractController
     }
   */
     public function about() {
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $elements = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAllPublished();
@@ -140,12 +144,16 @@ class IndexController extends AbstractController
         return $this->render('theme-a/pages/about.html.twig', [
             //'step' => 1,
             'page_title' => 'À propos',
+            'site' => $siteInfos,
             'about' => $elements,
             'categories' => $categories,
         ]);
     }
 
     public function creations() {
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         //$category = new Category();
         $elements = $this->getDoctrine()
             ->getRepository(Creation::class)
@@ -162,12 +170,16 @@ class IndexController extends AbstractController
         }
         return $this->render('theme-a/pages/creations.html.twig', [
             'page_title' => 'Créations',
+            'site' => $siteInfos,
             'creations' => $elements,
             'categories' => $categories,
         ]);
     }
 
     public function blog() {
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $elements = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAllPublished();
@@ -182,6 +194,7 @@ class IndexController extends AbstractController
         return $this->render('theme-a/pages/blog.html.twig', [
             //'step' => 1,
             'page_title' => 'Blog',
+            'site' => $siteInfos,
             'elements' => $elements,
             'categories' => $categories,
         ]);
@@ -190,6 +203,9 @@ class IndexController extends AbstractController
 
 
     public function contact() {
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
@@ -205,6 +221,7 @@ class IndexController extends AbstractController
         return $this->render('theme-a/pages/contact.html.twig', [
             //'step' => 1,
            // 'elements' => $elements,
+            'site' => $siteInfos,
             'categories' => $categories,
         ]);
     }

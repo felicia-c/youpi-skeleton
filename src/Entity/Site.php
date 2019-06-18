@@ -61,6 +61,11 @@ class Site
      */
     private $logo;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $headerBgImage;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -170,6 +175,17 @@ class Site
     public function setLogo($logo): self
     {
         $this->logo = $logo;
+
+        return $this;
+    }
+    public function getHeaderBgImage()
+    {
+        return $this->headerBgImage;
+    }
+
+    public function setHeaderBgImage($headerBgImage): self
+    {
+        $this->headerBgImage = $headerBgImage;
 
         return $this;
     }

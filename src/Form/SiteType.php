@@ -45,7 +45,7 @@ class SiteType extends AbstractType
                 ),
                 'required'   => false,
             ])
-            ->add('logo', TextType::class, [
+            ->add('logo', FileType::class, [
                 'attr' => array(
                     'class' => 'form-control',
                 ),
@@ -54,6 +54,13 @@ class SiteType extends AbstractType
 
             // Home page
                 // Hero header
+            ->add('headerBgImage', FileType::class, [
+                'label' => 'Image background',
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
+                'required'   => false,
+            ])
             ->add('preTitle', TextType::class, [
                 'label' => 'Texte haut (avant le titre principal)',
                 'attr' => array(

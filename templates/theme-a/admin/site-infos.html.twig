@@ -26,21 +26,21 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Logo du Site</td>
+                        <td>
+                            {% if site.logo is defined %}
+                                <img class="" width="300px" height="auto" src="{{ asset('uploads/' ~ site.logo) }}">
+                                <br>{{ site.logo }}
+                            {% else %}
+                                Image non définie
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Thème du Site</td>
                         <td>
                             {{ site.theme }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Titre du Site</td>
-                        <td>
-                            {{ site.title }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Logo du Site</td>
-                        <td>
-                            {{ site.logo }}
                         </td>
                     </tr>
                     </tbody>
@@ -58,6 +58,19 @@
                     <tbody>
                     <tr>
                         <td colspan="2"><h4 class="text-uppercase">Hero Header</h4></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Image actuelle
+                        </td>
+                        <td>
+                            {% if site.headerBgImage is defined %}
+                            <img class="" width="300px" height="auto" src="{{ asset('uploads/' ~ site.headerBgImage) }}">
+                            <br>{{ site.headerBgImage }}
+                            {% else %}
+                                Image non définie
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <td>Texte au dessus du titre principal</td>

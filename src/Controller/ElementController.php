@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Element;
+use App\Entity\Site;
 use App\Form\ElementType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,7 +29,9 @@ class ElementController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         $user = $this->getUser();
-
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
     /*
         $element = new Element();
         $element->setName($request->request->get('name'));
@@ -89,6 +92,7 @@ class ElementController extends AbstractController
 
 
         return $this->render('theme-a/admin/create.html.twig', [
+            'site' => $siteInfos,
             'form' => $form->createView(),
            // 'image' => $element->getImage(),
             'button_text' => 'Valider',
@@ -109,6 +113,9 @@ class ElementController extends AbstractController
      */
     public function showElement($id)
     {
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $element = $this->getDoctrine()
             ->getRepository(Element::class)
             ->find($id);
@@ -180,6 +187,9 @@ class ElementController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         //$user = $this->getUser();
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
@@ -224,6 +234,7 @@ class ElementController extends AbstractController
             ]);
         }
         return $this->render('form/create.html.twig', [
+            'site' => $siteInfos,
             'form' => $form->createView(),
             //'miniature' => $oldFileNamePath,
             'id' => $element->getId(),
@@ -265,6 +276,9 @@ class ElementController extends AbstractController
     {
        // $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
        // $user = $this->getUser()
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $elements = $this->getDoctrine()
             ->getRepository(Element::class)
             ->findAll();
@@ -283,6 +297,7 @@ class ElementController extends AbstractController
         // or render a template
         // in the template, print things with {{ product.name }}
         return $this->render('pages/elements-list.html.twig', [
+            'site' => $siteInfos,
             'elements' => $elements,
             'categories' => $categories,
         ]);

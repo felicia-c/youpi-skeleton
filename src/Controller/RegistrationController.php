@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\User;
+use App\Entity\Site;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,7 +22,9 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
-
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
@@ -57,6 +60,7 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
             'page_title' => 'nouveau compte',
             'categories' => $categories,
+            'site' => $siteInfos,
         ]);
     }
 }

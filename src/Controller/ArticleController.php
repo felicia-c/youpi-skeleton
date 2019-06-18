@@ -27,6 +27,9 @@ class ArticleController extends AbstractController
      */
     public function addArticle(Request $request,  FileUploader $fileUploader)
     {
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
@@ -77,6 +80,7 @@ class ArticleController extends AbstractController
 
 
         return $this->render('theme-a/admin/create-article.html.twig', [
+            'site' => $siteInfos,
             'form' => $form->createView(),
             'button_text' => 'Valider',
             'step' => 2,
@@ -90,6 +94,9 @@ class ArticleController extends AbstractController
      */
     public function showArticle($id)
     {
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $element = $this->getDoctrine()
             ->getRepository(Article::class)
             ->find($id);
@@ -107,6 +114,7 @@ class ArticleController extends AbstractController
         // or render a template
         // in the template, print things with {{ product.name }}
         return $this->render('theme-a/pages/article.html.twig', [
+            'site' => $siteInfos,
             'element' => $element,
             'published' => $element->getPublished(),
             'page_title' => $element->getTitle(),
@@ -120,7 +128,6 @@ class ArticleController extends AbstractController
     public function switchPublishArticle($id)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
-        $user = $this->getUser();
         $element = $this->getDoctrine()
             ->getRepository(Article::class)
             ->find($id);
@@ -158,7 +165,9 @@ class ArticleController extends AbstractController
      */
     public function editArticle($id, Request $request, FileUploader $fileUploader)
     {
-
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         //$user = $this->getUser();
 
@@ -209,6 +218,7 @@ class ArticleController extends AbstractController
             ]);
         }
         return $this->render('theme-a/admin/create-article.html.twig', [
+            'site' => $siteInfos,
             'form' => $form->createView(),
             //'miniature' => $oldFileNamePath,
             'id' => $element->getId(),
@@ -251,6 +261,9 @@ class ArticleController extends AbstractController
     {
         // $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         // $user = $this->getUser()
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $elements = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAll();
@@ -269,6 +282,7 @@ class ArticleController extends AbstractController
         // or render a template
         // in the template, print things with {{ product.name }}
         return $this->render('theme-a/admin/list.html.twig', [
+            'site' => $siteInfos,
             'elements' => $elements,
             'categories' => $categories,
             'page_title' => 'Mes articles',
