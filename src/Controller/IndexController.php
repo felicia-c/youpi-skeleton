@@ -5,6 +5,7 @@ use App\Entity\Site;
 use App\Entity\Article;
 use App\Entity\Creation;
 use App\Entity\Element;
+use App\Entity\Service;
 use App\Entity\Category;
 use App\Form\ContactType;
 
@@ -35,6 +36,9 @@ class IndexController extends AbstractController
         $creations = $this->getDoctrine()
             ->getRepository(Creation::class)
             ->findAllPublished();
+        $services = $this->getDoctrine()
+            ->getRepository(Service::class)
+            ->findAll();
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
@@ -82,6 +86,7 @@ class IndexController extends AbstractController
             'site' => $siteInfos,
             'elements' => $elements,
             'articles' => $articles,
+            'services' => $services,
             'creations' => $creations,
             'carousel' => $creations,
             'categories' => $categories,

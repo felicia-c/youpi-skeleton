@@ -40,8 +40,9 @@ Encore
     .addEntry('js/bootstrap/bootstrap', './assets/theme-base/bootstrap/js/bootstrap.js')
     .addEntry('js/bootstrap/ie10-viewport-bug-workaround', './assets/theme-base/bootstrap/js/ie10-viewport-bug-workaround.js')
     .addEntry('js/bootstrap/ie-emulation-modes-warning', './assets/theme-base/bootstrap/js/ie-emulation-modes-warning.js')
-    .addEntry('js/app', ['./assets/theme-a/js/app.js',])
+    //.addEntry('js/app', ['./assets/theme-a/js/app.js',])
     .addStyleEntry('css/extensions/fancybox/jquery.fancybox', './assets/theme-base/extensions/fancybox/jquery.fancybox.css')
+    .addEntry('js/app', ['./assets/theme-a/js/app.js',])
 
     /*.addEntry('js/analytics', './assets/js/analytics.js')*/
     .addStyleEntry('css/bootstrap/bootstrap', './assets/theme-base/bootstrap/css/bootstrap.css')

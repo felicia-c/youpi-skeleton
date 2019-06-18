@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Site;
+use App\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+//use Symfony\Component\Routing\Annotation\Route;
 use App\Form\SiteType;
 use App\Repository\SiteRepository;
 use App\Service\FileUploader;
@@ -16,8 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 
-
-use App\Form\ElementType;
 
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
@@ -33,15 +32,14 @@ class SiteController extends AbstractController
      */
     public function showSiteInfos()
     {
-        //$siteInfos = new Site();
         $siteInfos = $this->getDoctrine()
         ->getRepository(Site::class)
         ->find(1);
-/*
+
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
-*/
+
         if (!$siteInfos) {
             throw $this->createNotFoundException(
                 'No informations found'
@@ -54,8 +52,8 @@ class SiteController extends AbstractController
         // in the template, print things with {{ product.name }}
         return $this->render('theme-a/admin/site-infos.html.twig', [
             'site' => $siteInfos,
-            'page_title' => 'Informations du site'
-            //'categories' => $categories,
+            'page_title' => 'Informations du site',
+            'categories' => $categories,
             //'published' => $element->getPublished()
         ]);
     }
@@ -63,81 +61,7 @@ class SiteController extends AbstractController
 
 
     /**
-     * @Route("/site", name="site")
-     */
-
-/*
-    public function addSiteInfos()
-    {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Ah zut ! Vous n\'avez pas accès à cette page');
-        $user = $this->getUser();
-        $siteInfos = $this->getDoctrine()
-            ->getRepository(Site::class)
-            ->findAll();
-        //$element = new Creation();
-        //$category = new Category();
-        $form = $this->createForm(CreationType::class, $element);
-        $element->setTitle($request->request->get('title'));
-        $category->setName($form->get('category')->getData());
-        $element->setAchievementDate(new \DateTime($request->request->get('achievementDate')));
-        $element->setPublished(true);
-        //$element->setImage($request->request->get('image'));
-        //$element->setImage(new File($this->getParameter('images_directory').'/'.$fileName));
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            //$category->setName($form->get('category'));
-            //$entityObject = $form->get('category')->getData();
-            //$category = $category->get('Id');
-            $element = $form->getData();
-            $element->addCategory($category);
-
-            $file = new UploadedFile($element->getImage(), $element->getImage());
-            if ($file) {
-                $fileName = $fileUploader->upload($file);
-                $element->setImage($fileName);
-
-            } else {
-                $element->setImage(null);
-            }
-
-            $entityManager = $this->getDoctrine()->getManager();
-            //$entityManager->persist($category);
-            $entityManager->persist($element);
-            $entityManager->flush();
-
-            $this->addFlash(
-                'success',
-                'Nouvelle informations validées !'
-            );
-
-            return $this->redirectToRoute('list_creations');
-            //return $this->redirectToRoute('creations');
-        }
-        else if ($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash(
-                'warning',
-                'Oops ! Le formulaire comporte des erreurs '
-            );
-        }
-
-
-        return $this->render('theme-a/admin/siteInfos.html.twig', [
-            'form' => $form->createView(),
-            //'categories' => $categories,
-            // 'image' => $element->getImage(),
-            'button_text' => 'Valider',
-            'step' => 2,
-            'page_title' => 'Informations du site'
-        ]);
-
-    }
-*/
-
-
-    /**
-     * Route("/site/edit/{id}", name="edit_site_infos")
+     * Route("admin/site-infos/edit/{id}", name="edit_site_infos")
      * @param $id
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -227,6 +151,7 @@ class SiteController extends AbstractController
             //'miniature' => $oldFileNamePath,
             //'id' => $element->getId(),
             'logo' => $oldFileName,
+            //'site.logo' => $siteInfos->getLogo(),
             'header_bgImage' => $oldFileName_headerBgImage,
             //'categories' => $categories,
             'edit' => true,

@@ -83,6 +83,27 @@ switch_publish_creation:
     controller: App\Controller\CreationController::switchPublishCreation
     requirements:
         id: '\d+'
+
+#SERVICE
+new_service:
+    path: /admin/nouveau-service
+    controller: App\Controller\ServiceController::addService
+
+list_services:
+    path: /admin/services
+    controller: App\Controller\ServiceController::listServices
+    requirements:
+        id: '\d+'
+edit_service:
+    path: /admin/service/edit/{id}
+    controller: App\Controller\ServiceController::editService
+    requirements:
+        id: '\d+'
+delete_service:
+    path: /admin/service/delete/{id}
+    controller: App\Controller\ServiceController::deleteService
+    requirements:
+        id: '\d+'
 #BLOG
 blog:
     path: /blog

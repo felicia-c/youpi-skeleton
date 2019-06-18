@@ -1,6 +1,8 @@
 //require('jquery');
 import '../../../node_modules/jquery/dist/jquery.js';
 require('slick-carousel/slick/slick');
+import '../../../node_modules/quill/core.js';
+import '../../../node_modules/quill/quill.js';
 //var isotope = require('../../theme-base/extensions/portfolio/isotope');
 import '../../../node_modules/isotope-layout/dist/isotope.pkgd.js';
 require('../../theme-base/extensions/fancybox/jquery.fancybox');
@@ -34,8 +36,18 @@ $(document).ready(function() {
         //jumboHeight = $('.parallax-block').outerHeight();
         parallax();
     });
-
-
+/*
+    var options = {
+        debug: 'info',
+        modules: {
+            toolbar: '#toolbar'
+        },
+        placeholder: 'Compose an epic...',
+        readOnly: true,
+        theme: 'snow'
+    };
+    var editor = new Quill('#editor', options);
+*/
     $('.index-carousel').slick({
         lazyLoad: 'ondemand',
         slidesToShow: 1,

@@ -137,28 +137,57 @@
 {# {% include 'theme-a/blocks/features.html.twig' %} #}
 
 <!-- Full Spotlight left-->
+{% set index = 0 %}
+    {% for service in services %}
+        {% set index = index + 1  %}
+{% if index is odd %}
     <section class="page-section-no-padding">
         <div class="container-fluid">
             <div class="row">
                 <div class="container col-md-6">
                     <div class="row">
                         <div class="col-md-7 col-md-offset-4 spotlight-container">
-                            <h2 class="title-section"><span class="title-regular">TERRASSES</span><br/>& JARDINS</h2>
+                            <h2 class="title-section"><span class="title-regular">{{ service.title1 }}</span><br/>{{ service.title2 }}</h2>
                             <hr class="title-underline" />
                             <p>
-                                Depuis plus de 10 ans, Adrien Rogard se spécialise dans la <strong>création d'espaces verts</strong>, la <strong>végatalisation de terrasses</strong> et l'<strong>aménagement de jardins</strong>. Avec passion, il redonne vie aux magnifiques terrasses privées qu'offrent les toits de Paris et réveille les jardins endormis d'Île-de-France.
+                                {% if service.description is defined %}{{ service.description|striptags('<strong>')|raw|nl2br }}{% endif %}
+                                <!--Depuis plus de 10 ans, Adrien Rogard se spécialise dans la <strong>création d'espaces verts</strong>, la <strong>végatalisation de terrasses</strong> et l'<strong>aménagement de jardins</strong>. Avec passion, il redonne vie aux magnifiques terrasses privées qu'offrent les toits de Paris et réveille les jardins endormis d'Île-de-France.-->
                             </p>
                             <!--<a href="#" class="btn btn-primary">More Information</a>-->
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 spotlight-img-cont" style="background-image: url({{ asset('build/assets/theme-a/images/terrasse-sq.jpg') }}); "> </div>
+                <div class="col-md-6 spotlight-img-cont" style="background-image: url({% if service.imageHome %}{{ asset('uploads/' ~ service.imageHome) }}{% else %}{{ asset('build/assets/theme-a/images/leafs.jpg') }}{% endif %}); "> </div>
             </div>
         </div>
     </section>
+            {% else %}
+        <section class="page-section-no-padding">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="container col-md-6 col-md-push-6">
+                        <div class="row">
+                            <div class="col-md-7 col-md-offset-1 spotlight-container">
+                                <h2 class="title-section"><span class="title-regular">{{ service.title1 }}</span><br/>{{ service.title2 }}</h2>
+                                <hr class="title-underline" />
+                                <p>
+                                    {% if service.description is defined %}{{ service.description|striptags('<strong>')|raw|nl2br }}{% endif %}
 
+                                 <!--   Pour garantir la durée de vie de vos plantes, nous réalisons également l'installation de systèmes d'<strong>arrossage automatique</strong> sur terrasses jardins et balcons. Vous avez une arrivée d'eau ? L'installation peut se faire en 1 jour à peine ! -->
+                                </p>
+                                <!--<a href="#" class="btn btn-primary">More Information</a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-md-pull-6 spotlight-img-cont" style="background-image: url({% if service.imageHome %}{{ asset('uploads/' ~ service.imageHome) }}{% else %}{{ asset('build/assets/theme-a/images/leafs.jpg') }}{% endif %}); "> </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+{% endfor %}
 
 <!-- Full Spotlight right-->
+{#
     <section class="page-section-no-padding">
         <div class="container-fluid">
             <div class="row">
@@ -177,7 +206,7 @@
             </div>
         </div>
     </section>
-
+#}
 <!-- Our Services -->
 {# {% include 'theme-a/blocks/services.html.twig' %} #}
 

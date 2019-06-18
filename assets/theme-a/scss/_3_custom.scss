@@ -11,7 +11,9 @@ body {
 .orange-text {
   color: darkorange;
 }
-
+.title-section {
+  text-transform: uppercase;
+}
 @media (max-width: 640px){
   .title-section {
     font-size: 3.2rem;
@@ -131,6 +133,7 @@ body {
   .title-section {
     font-size: 4.2rem;
     line-height: 5.2rem;
+    text-transform: none;
   }
   @media (max-width: 640px) {
     padding-top: 30px;

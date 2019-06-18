@@ -94,6 +94,7 @@ class SiteType extends AbstractType
                 'label' => 'Texte de l\'intro',
                 'attr' => array(
                     'class' => 'form-control',
+                    'id' => 'editor'
                 ),
                 'required'   => false,
             ])
