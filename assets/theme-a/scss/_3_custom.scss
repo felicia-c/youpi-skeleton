@@ -1,5 +1,6 @@
 body {
   scroll-behaviour: smooth;
+ // background-color: $white;
 }
 .red-text {
   color: $red-error;
@@ -60,6 +61,8 @@ body {
     font-size: 3.6rem;
   }
 }
+
+
 
 .lead img {
   padding: 5px;
@@ -288,6 +291,12 @@ body {
     border: none;
     border-bottom: 1px solid $primary-color;
   }
+
+  &.infos-site {
+    th {
+      border-top: none;
+    }
+  }
 }
 .testmonial-content {
   background: #333;
@@ -359,7 +368,39 @@ body {
   }
 }
 /** FORMS **/
-
+.form-section {
+  border: 1px solid $primary-color;
+  padding: 20px;
+  margin-bottom: 25px;
+  h3 {
+    position:relative;
+    top: -35px;
+    margin: 0;
+    display: inline-block;
+    padding: 4px;
+    background-color: $white;
+  }
+  h4 {
+    color: $secondary-color;
+  }
+  & > .form-section {
+    border: none;
+    padding: 10px;
+  }
+}
+form {
+  input, textarea {
+    border: 1px solid transparent;
+    background-color: $light-grey;
+    box-shadow: none;
+    &:hover {
+      border: 1px solid $secondary-color;
+    }
+    &:focus {
+      border: 1px solid $primary-color;
+    }
+  }
+}
 #creation_category {
   label {
     padding: 10px;

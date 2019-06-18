@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Site;
 use App\Entity\Article;
 use App\Entity\Creation;
 use App\Entity\Element;
@@ -20,6 +21,9 @@ class IndexController extends AbstractController
      */
     public function index(Request $request, \Swift_Mailer $mailer)
     {
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $elements = $this->getDoctrine()
             ->getRepository(Element::class)
             ->findAllPublished();
@@ -74,6 +78,7 @@ class IndexController extends AbstractController
         }
         return $this->render('theme-a/index.html.twig', [
             'step' => 1,
+            'site' => $siteInfos,
             'elements' => $elements,
             'articles' => $articles,
             'creations' => $creations,

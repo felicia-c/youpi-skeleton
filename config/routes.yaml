@@ -8,6 +8,12 @@ login:
 app_logout:
     path: /logout
     methods: GET
+show_site_infos:
+    path: /admin/infos-site
+    controller: App\Controller\SiteController:showSiteInfos
+edit_site_infos:
+    path: /admin/infos-site/edit
+    controller: App\Controller\SiteController:editSiteInfos
 nouveau:
     path: /nouveau
     controller: App\Controller\ElementController::addElement

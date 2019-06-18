@@ -1,0 +1,88 @@
+{% extends 'theme-a/base.html.twig' %}
+{% block title %}Informations du site{% endblock %}
+{% block body %}
+    <section class="page-section padding-60">
+        <div class="container">
+            <div class="row">
+                <h2>Informations du site</h2>
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="form-section">
+                        <h3>Informations générales</h3>
+                        {{ form_start(form) }}
+                        <div class="form-group">
+                            {{ form_label(form.title) }}
+                            {{ form_widget(form.title) }}
+                            <span class="helper-text" data-error="Champ obligatoire"></span>
+                        </div>
+                        {% if logo is defined %}
+                            <div>
+                                <small>Logo actuel</small>
+                                <br>
+                                <img class="" width="100px" height="auto" src="{{ asset('uploads/' ~ logo) }}">
+                            </div>
+                        {% endif %}
+                        <div class="form-group file-field">
+                            <!--<div class="btn"> -->
+                            {{ form_label(form.logo) }}
+                            {{ form_widget(form.logo) }}
+                            <!--</div>-->
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.owner) }}
+                            {{ form_widget(form.owner) }}
+                            <span class="helper-text" data-error="Champ obligatoire"></span>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.theme) }}
+                            {{ form_widget(form.theme) }}
+                            <span class="helper-text" data-error="Champ obligatoire"></span>
+                        </div>
+                    </div>
+                    <div  class="form-section">
+                        <h3>Home Page</h3>
+                        <div class="form-section">
+                            <h4>Hero Header</h4>
+                            <div class="form-group">
+                                {{ form_label(form.preTitle) }}
+                                {{ form_widget(form.preTitle) }}
+                                <span class="helper-text" data-error="Champ obligatoire"></span>
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.mainTitle) }}
+                                {{ form_widget(form.mainTitle) }}
+                                <span class="helper-text" data-error="Champ obligatoire"></span>
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.subTitle) }}
+                                {{ form_widget(form.subTitle) }}
+                                <span class="helper-text" data-error="Champ obligatoire"></span>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h4>Introduction</h4>
+                            <div class="form-group">
+                                {{ form_label(form.introTitle) }}
+                                {{ form_widget(form.introTitle) }}
+                                <span class="helper-text" data-error="Champ obligatoire"></span>
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.introText) }}
+                                {{ form_widget(form.introText) }}
+                                <span class="helper-text" data-error="Champ obligatoire"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg">{{ button_text }}</button>
+                    </div>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
