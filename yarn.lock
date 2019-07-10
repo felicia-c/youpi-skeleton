@@ -2505,8 +2505,8 @@ fsevents@^1.2.7:
     nan "^2.9.2"
     node-pre-gyp "^0.10.0"
 
-fstream@^1.0.0, fstream@^1.0.2:
-  version "1.0.11"
+fstream@^1.0.0, fstream@^1.0.12:
+  version "1.0.12"
   resolved "https://registry.yarnpkg.com/fstream/-/fstream-1.0.11.tgz#5c1fb1f117477114f0632a0eb4b71b3cb0fd3171"
   dependencies:
     graceful-fs "^4.1.2"
@@ -3194,6 +3194,10 @@ isotope-layout@^3.0.6:
 isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
+
+jquery-captcha@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/jquery-captcha/-/jquery-captcha-2.3.0.tgz#cecc525ab8f06c435f922be90104bca7f5ec9410"
 
 jquery@^2.x:
   version "2.2.4"
