@@ -1,6 +1,7 @@
 security:
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
+
     encoders:
         App\Entity\User:
             # bcrypt or argon2i are recommended
@@ -19,14 +20,19 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            switch_user: true
+            security: true
             anonymous: true
             logout:
                 path:   app_logout
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
-            # activate different ways to authenticate
+            remember_me:
+              secret:   '%kernel.secret%'
+              lifetime: 2592000 # 30 jours
 
+            # activate different ways to authenticate
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 

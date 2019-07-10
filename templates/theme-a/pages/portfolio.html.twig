@@ -1,0 +1,21 @@
+{% extends 'theme-a/base.html.twig' %}
+{% block title %}Portfolio{% endblock %}
+{% block body %}
+
+    <!-- 4 Columns Portfolio Filter -->
+    <!-- 4 Columns Portfolio -->
+    {% include 'theme-a/blocks/portfolio-filters-4cols.html.twig' %}
+
+    <!-- 3 Columns Portfolio Filter -->
+    <!-- 3 Columns Portfolio -->
+    {% include 'theme-a/blocks/portfolio-filters-3cols.html.twig' %}
+
+    <!-- 2 Columns Portfolio Filter -->
+    <!-- 2 Columns Portfolio -->
+    {% include 'theme-a/blocks/portfolio-filters-2cols.html.twig' %}
+
+    <!-- 1 Column Portfolio Filter -->
+    <!-- 1 Column Portfolio -->
+    {% include 'theme-a/blocks/portfolio-filters-1cols.html.twig' %}
+
+{% endblock %}

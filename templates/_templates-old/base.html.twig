@@ -10,7 +10,7 @@
         {% endblock %}
     </head>
     <body>
-        {% include 'layout/header.html.twig' %}
+        {% include 'layout' %}
         <div class="container main-container">
             {% block body %}{% endblock %}
         </div>
@@ -22,7 +22,7 @@
                 </div>
             {% endfor %}
         {% endfor %}
-        {% include 'layout/footer.html.twig' %}
+        {% include 'layout' %}
         {% block javascripts %}
         <script src="{{ asset('/build/js/app.js') }}"></script>
         {% endblock %}

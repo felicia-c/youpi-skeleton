@@ -2,13 +2,15 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
+
 use App\Form\ArticleType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 use App\Service\FileUploader;
-
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\File;
@@ -25,6 +27,12 @@ class ArticleController extends AbstractController
      */
     public function addArticle(Request $request,  FileUploader $fileUploader)
     {
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
        // $user = $this->getUser();
 
@@ -44,9 +52,9 @@ class ArticleController extends AbstractController
 
             $element = $form->getData();
 
-            $file = $element->getImage();
+            $file = new UploadedFile($element->getImage(), $element->getImage());
             if ($file) {
-                $fileName = $fileUploader->upload(new File($file));
+                $fileName = $fileUploader->upload($file);
                 $element->setImage($fileName);
 
             } else {
@@ -71,10 +79,13 @@ class ArticleController extends AbstractController
         }
 
 
-        return $this->render('blog/create-article.html.twig', [
+        return $this->render('theme-a/admin/create-article.html.twig', [
+            'site' => $siteInfos,
             'form' => $form->createView(),
             'button_text' => 'Valider',
-            'step' => 2
+            'step' => 2,
+            'page_title' => 'Nouvel article',
+            'categories' => $categories,
         ]);
     }
 
@@ -83,10 +94,15 @@ class ArticleController extends AbstractController
      */
     public function showArticle($id)
     {
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $element = $this->getDoctrine()
             ->getRepository(Article::class)
             ->find($id);
-
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
         if (!$element) {
             throw $this->createNotFoundException(
                 'No element found for id '.$id
@@ -97,7 +113,13 @@ class ArticleController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('blog/article.html.twig', ['element' => $element, 'published' => $element->getPublished() ]);
+        return $this->render('theme-a/pages/article.html.twig', [
+            'site' => $siteInfos,
+            'element' => $element,
+            'published' => $element->getPublished(),
+            'page_title' => $element->getTitle(),
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -106,7 +128,6 @@ class ArticleController extends AbstractController
     public function switchPublishArticle($id)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
-        $user = $this->getUser();
         $element = $this->getDoctrine()
             ->getRepository(Article::class)
             ->find($id);
@@ -144,8 +165,15 @@ class ArticleController extends AbstractController
      */
     public function editArticle($id, Request $request, FileUploader $fileUploader)
     {
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         //$user = $this->getUser();
+
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
 
         $entityManager = $this->getDoctrine()->getManager();
         $element = $entityManager->getRepository(Article::class)->find($id);
@@ -183,18 +211,23 @@ class ArticleController extends AbstractController
             $entityManager->persist($article);
             $entityManager->flush();
             $this->addFlash('success', 'Élément modifié !');
-            return $this->redirectToRoute('show_article', [
-                'id' => $element->getId()
+            return $this->redirectToRoute('list_articles', [
+                'id' => $element->getId(),
+                'page_title' => 'Mes articles',
+                'categories' => $categories,
             ]);
         }
-        return $this->render('blog/create-article.html.twig', [
+        return $this->render('theme-a/admin/create-article.html.twig', [
+            'site' => $siteInfos,
             'form' => $form->createView(),
             //'miniature' => $oldFileNamePath,
             'id' => $element->getId(),
             'image' => $oldFileName,
+            'categories' => $categories,
             'edit' => true,
             //'image' => $element->getImage(),
             'button_text' => 'Modifier !',
+            'page_title' => 'Modifier un article'
         ]);
     }
 
@@ -228,8 +261,14 @@ class ArticleController extends AbstractController
     {
         // $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         // $user = $this->getUser()
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $elements = $this->getDoctrine()
             ->getRepository(Article::class)
+            ->findAll();
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
             ->findAll();
 
         if (!$elements) {
@@ -242,7 +281,14 @@ class ArticleController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('blog/articles-list.html.twig', ['elements' => $elements]);
+        return $this->render('theme-a/admin/list.html.twig', [
+            'site' => $siteInfos,
+            'elements' => $elements,
+            'categories' => $categories,
+            'page_title' => 'Mes articles',
+            'edit_path' => 'edit_article',
+            'publish_path' => 'switch_publish_article',
+            'delete_path' => 'delete_article',
+        ]);
     }
-
 }

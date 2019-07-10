@@ -22,6 +22,7 @@ class ArticleType extends AbstractType
             ->add('title', TextType::class, [
                 'attr' => array(
                     'placeholder' => '',
+                    'class' => 'form-control',
                 ),
                 'required'   => true,
             ])
@@ -31,24 +32,28 @@ class ArticleType extends AbstractType
                 'required' => false,
                 'attr' => array(
                     'placeholder' => 'JJ/MM/AAAA',
+                    'class' => 'form-control',
                 ),
                 'invalid_message' => 'format invalide',
             ])
             ->add('intro', TextareaType::class, [
                 'attr' => array(
                     'placeholder' => '',
+                    'class' => 'form-control',
                 ),
                 'required'   => true,
             ])
             ->add('text', TextareaType::class, [
                 'attr' => array(
                     'placeholder' => '',
+                    'class' => 'form-control',
                 ),
                 'required'   => true,
             ])
             ->add('link', TextType::class, [
                 'attr' => array(
                     'placeholder' => '',
+                    'class' => 'form-control',
                 ),
                 'required'   => true,
             ])

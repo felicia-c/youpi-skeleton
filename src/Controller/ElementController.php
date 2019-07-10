@@ -1,7 +1,9 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Element;
+use App\Entity\Site;
 use App\Form\ElementType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,7 +29,9 @@ class ElementController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         $user = $this->getUser();
-
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
     /*
         $element = new Element();
         $element->setName($request->request->get('name'));
@@ -44,6 +48,10 @@ class ElementController extends AbstractController
 */
 
         $element = new Element();
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
+
         $form = $this->createForm(ElementType::class, $element);
         $element->setName($request->request->get('name'));
         $element->setInitDate(new \DateTime($request->request->get('initDate')));
@@ -83,10 +91,12 @@ class ElementController extends AbstractController
         }
 
 
-        return $this->render('form/create.html.twig', [
+        return $this->render('theme-a/admin/create.html.twig', [
+            'site' => $siteInfos,
             'form' => $form->createView(),
            // 'image' => $element->getImage(),
             'button_text' => 'Valider',
+            'categories' => $categories,
             'step' => 2
         ]);
         /*
@@ -103,9 +113,16 @@ class ElementController extends AbstractController
      */
     public function showElement($id)
     {
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $element = $this->getDoctrine()
             ->getRepository(Element::class)
             ->find($id);
+
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
 
         if (!$element) {
             throw $this->createNotFoundException(
@@ -117,7 +134,11 @@ class ElementController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-         return $this->render('element/show.html.twig', ['element' => $element, 'published' => $element->getPublished() ]);
+         return $this->render('element/show.html.twig', [
+             'element' => $element,
+             'categories' => $categories,
+             'published' => $element->getPublished()
+         ]);
     }
 
     /**
@@ -166,7 +187,12 @@ class ElementController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         //$user = $this->getUser();
-
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
         $entityManager = $this->getDoctrine()->getManager();
         $element = $entityManager->getRepository(Element::class)->find($id);
         if (!$element) {
@@ -208,10 +234,12 @@ class ElementController extends AbstractController
             ]);
         }
         return $this->render('form/create.html.twig', [
+            'site' => $siteInfos,
             'form' => $form->createView(),
             //'miniature' => $oldFileNamePath,
             'id' => $element->getId(),
             'image' => $oldFileName,
+            'categories' => $categories,
             'edit' => true,
             //'image' => $element->getImage(),
             'button_text' => 'Modifier !',
@@ -248,8 +276,14 @@ class ElementController extends AbstractController
     {
        // $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
        // $user = $this->getUser()
+        $siteInfos = $this->getDoctrine()
+            ->getRepository(Site::class)
+            ->find(1);
         $elements = $this->getDoctrine()
             ->getRepository(Element::class)
+            ->findAll();
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
             ->findAll();
 
         if (!$elements) {
@@ -262,6 +296,10 @@ class ElementController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('pages/elements-list.html.twig', ['elements' => $elements]);
+        return $this->render('pages/elements-list.html.twig', [
+            'site' => $siteInfos,
+            'elements' => $elements,
+            'categories' => $categories,
+        ]);
     }
 }

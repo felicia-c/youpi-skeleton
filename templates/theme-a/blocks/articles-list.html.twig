@@ -1,0 +1,36 @@
+<section class="page-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="title-section"><span class="title-regular">DERNIERS</span><br/>ARTICLES</h2>
+                <hr class="title-underline" />
+            </div>
+        </div>
+        <div class="row blog-listing">
+            {% for article in articles %}
+            <div class="col-md-4">
+                <article>
+                    <!--src="http://placehold.it/690x527"-->
+                    {% if article.image %}
+                    <img class="img-thumbnail" src="{{ asset('uploads/' ~ article.image) }}"  alt="" />
+                    {% else %}
+                        <img  class="img-thumbnail" src="{{ asset('build/assets/theme-a/images/leafs.jpg') }}" alt="">
+                    {% endif %}
+                    <h2>{{ article.title }}</h2>
+                    <hr class="title-underline">
+                    <p>
+                        {{ article.intro|slice(0, 250) ~ '...' }}
+                    </p>
+                    <div class="post-meta">
+                        <span><i class="fa fa-calendar"></i> {{ article.createdDate|date("d/m/Y") }}</span>
+                        <!--<span><i class="fa fa-user"></i> By <a href="#">John Doe</a> </span>-->
+                        <span><i class="fa fa-tag"></i> <a href="#">Duis</a>, <a href="#">News</a> </span>
+                        <!--<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>-->
+                    </div>
+                    <a href="{{ path('show_article' , { 'id': article.id }) }}" class="btn btn-xs btn-primary">Lire la suite...</a>
+                </article>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

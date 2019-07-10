@@ -1,0 +1,56 @@
+{% extends 'theme-a/base.html.twig' %}
+{% block title %}Nouveau Service{% endblock %}
+{% block body %}
+    <section class="page-section padding-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    {%  if edit is defined %}
+                        <h2>Modifier</h2>
+                    {% else %}
+                        <h2>Nouveau service</h2>
+                    {% endif %}
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        <label for="title">{{ form_label(form.title1) }}</label>
+                        {{ form_widget(form.title1) }}
+                        <span class="helper-text" data-error="Champ obligatoire"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">{{ form_label(form.title2) }}</label>
+                        {{ form_widget(form.title2) }}
+                        <span class="helper-text" data-error="Champ obligatoire"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">{{ form_label(form.description) }}</label>
+                        {{ form_widget(form.description) }}
+                        <span class="helper-text" data-error="Champ obligatoire"></span>
+                    </div>
+                    {% if image_home is defined %}
+                        <div>
+                            <small>image actuelle</small>
+                            <br>
+                            <img class="" width="300px" height="auto" src="{{ asset('uploads/' ~ image_home) }}">
+                        </div>
+                    {% endif %}
+                    <div class="form-group file-field">
+                        <!--<div class="btn"> -->
+                        <label>image</label>
+                        {{ form_widget(form.image_home) }}
+                        <!--</div>-->
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg">{{ button_text }}</button>
+                    </div>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

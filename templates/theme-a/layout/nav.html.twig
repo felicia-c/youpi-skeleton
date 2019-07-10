@@ -1,0 +1,108 @@
+<!-- Navigation -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{{ path('index') }}"><img class="logo" src="{{ asset('uploads/' ~ site.logo) }}" alt="Adrien Rogard Paysagiste"></a>
+        </div>
+
+        <nav class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="dropdown">
+                    <a href="{{ path('creations') }}" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Créations</li>
+                        <li><a href="{{ path('new_creation') }}">Nouvelle creation</a></li>
+                        <li><a href="{{ path('list_creations') }}">Mes créations</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Services</li>
+                        <li><a href="{{ path('list_services') }}">Mes services</a></li>
+                        <li><a href="{{ path('new_service') }}">Nouveau service</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Informations du site</li>
+                        <li><a href="{{ path('show_site_infos') }}">Voir les informations du site</a></li>
+                        <li><a href="{{ path('edit_site_infos') }}">Modifier les informations</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+                {#<li><a class="waves-effect" href="{{ path('index') }}">Accueil</a></li>
+                 <li><a class="waves-effect" href="{{ path('about') }}">À propos</a></li>
+
+                <li class="dropdown">
+                     <a href="{{ path('creations') }}" class="dropdown-toggle" data-toggle="dropdown">Créations<b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                         <li class="dropdown-header"></li>
+                         <li><a href="{{ path('creations') }}">Toutes les catégories</a></li>
+                         {% for category in categories %}
+                         <li><a href="{{ path('creations_category', {'name': category.name}) }}">{{ category.name }}</a></li>
+                         {% endfor %}
+                         <!--
+                         <li><a href="{{ path('blog') }}">Sols</a></li>
+                         <li><a href="{{ path('blog') }}">Arrosage automatique</a></li>
+                         <li><a href="{{ path('blog') }}">Éclairages</a></li>
+                         <li><a href="{{ path('blog') }}">Haies / Panneaux</a></li>
+                         <li><a href="{{ path('blog') }}">Gazons</a></li>
+                         <li><a href="{{ path('blog') }}">Plantations</a></li>
+                         -->
+                         <!--<li><a href="#">Blog Single Post</a></li>-->
+                         {% if is_granted('ROLE_ADMIN') %}
+                             <li class="divider"></li>
+                             <li class="dropdown-header">Admin</li>
+                             <li><a href="{{ path('new_creation') }}">Nouvelle creation</a></li>
+                             <li><a href="{{ path('list_creations') }}">Mes créations</a></li>
+                         {% endif %}
+                     </ul>
+                 </li>
+                #}
+              <!--  <li><a class="waves-effect" href="{{ path('index') }}">Entretien</a></li>
+                <li><a class="waves-effect" href="{{ path('index') }}">Nous aimons</a></li> -->
+              {#   <li {% if is_granted('ROLE_ADMIN') %}class="dropdown"{% endif %}>
+                    <a href="{{ path('blog') }}" {% if is_granted('ROLE_ADMIN') %}class="dropdown-toggle" data-toggle="dropdown" {% endif %}>Blog{% if is_granted('ROLE_ADMIN') %}<b class="caret"></b>{% endif %}</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header"></li>
+                        <!--<li><a href="{{ path('blog') }}">Articles</a></li>-->
+                        <!--<li><a href="#">Blog Single Post</a></li>-->
+
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Admin</li>
+                            <li><a href="{{ path('new_article') }}">Nouvel article</a></li>
+                            <li><a href="{{ path('list_articles') }}">Mes articles</a></li>
+
+                    </ul>
+                    {% endif %}
+                </li>
+                #}
+                <!--
+                <li><a class="waves-effect" href="{{ path('index') }}">Biblio</a></li>-->
+                <li><a class="waves-effect" href="/#contact">Contact</a></li>
+
+                {#
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Elements<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header"></li>
+                        <li><a href="#">Elements publié</a></li>
+                        <!--<li><a href="#">Blog Single Post</a></li>-->
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Admin</li>
+                            <li><a href="{{ path('nouveau') }}">Nouvel élément</a></li>
+                            <li><a href="{{ path('list_element') }}">Tous les éléments</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+                #}
+            </ul>
+        </nav>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</div>

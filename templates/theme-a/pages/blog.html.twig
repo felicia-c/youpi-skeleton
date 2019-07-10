@@ -1,0 +1,78 @@
+{% extends 'theme-a/base.html.twig' %}
+{% block title %}Blog{% endblock %}
+{% block body %}
+    <!-- Right Sidebar Container  -->
+<section class="page-section padding-30">
+    <div class="container">
+        <div class="row">
+            <!-- Content -->
+            <div class="col-md-12">
+                <div class="blog-listing">
+                    {% for element in elements %}
+                    <article>
+                        {% if element.image %}
+                        <img class="img-thumbnail" src="{{ asset('uploads/' ~ element.image) }}">
+                        {% else %}
+                            <img <img class="img-thumbnail"  src="{{ asset('build/assets/theme-a/images/leafs.jpg') }}">
+                        {% endif %}
+                        <h2>{{ element.title }}</h2>
+                        <hr class="title-underline">
+                        <p>
+                            {{ element.intro }}
+                        </p>
+                        <div class="post-meta">
+                            <span><i class="fa fa-calendar"></i>{{ element.createdDate|date("d/m/Y") }}</span>
+                            <span><i class="fa fa-user"></i> By <a href="#">John Doe</a> </span>
+                            <span><i class="fa fa-tag"></i> <a href="#">Duis</a>, <a href="#">News</a> </span>
+                            <span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
+                            <a href="{{ path('show_article', { 'id': element.id }) }}" class="btn btn-xs btn-primary pull-right">Read more...</a>
+                        </div>
+                    </article>
+                    {% endfor %}
+                    <!--
+                    <article class="post-video">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe src="https://player.vimeo.com/video/177466730?color=ffffff&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        </div>
+                        <h2>Post Format - Video</h2>
+                        <hr class="title-underline">
+                        <p>
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet...
+                        </p>
+                        <div class="post-meta">
+                            <span><i class="fa fa-calendar"></i> Aug 17, 2016 - 6:53</span>
+                            <span><i class="fa fa-user"></i> By <a href="#">John Doe</a> </span>
+                            <span><i class="fa fa-tag"></i> <a href="#">Duis</a>, <a href="#">News</a> </span>
+                            <span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
+                            <a href="blog-single-post.html" class="btn btn-xs btn-primary pull-right">Read more...</a>
+                        </div>
+                    </article>
+                    <article>
+                        <iframe width="100%" height="250" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/259883503&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+                        <h2>Post Format - Audio</h2>
+                        <hr class="title-underline">
+                        <p>
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet...
+                        </p>
+                        <div class="post-meta">
+                            <span><i class="fa fa-calendar"></i> Aug 17, 2016 - 6:53</span>
+                            <span><i class="fa fa-user"></i> By <a href="#">John Doe</a> </span>
+                            <span><i class="fa fa-tag"></i> <a href="#">Duis</a>, <a href="#">News</a> </span>
+                            <span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
+                            <a href="blog-single-post.html" class="btn btn-xs btn-primary pull-right">Read more...</a>
+                        </div>
+                    </article>
+                    -->
+                    <ul class="pagination pagination-lg">
+                        <li><a href="#">«</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

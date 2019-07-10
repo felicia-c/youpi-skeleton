@@ -1,0 +1,173 @@
+{% extends 'theme-a/base.html.twig' %}
+{% block title %}Mes créations{% endblock %}
+{% block body %}
+    {% set date = "" %}
+    {% set description = "" %}
+
+<section class="page-section padding-60 section-admin infos-site" style="">
+    <div class="container">
+        <div class="row margin-bottom-25">
+            <div class="col-md-12">
+                <table class="table table-dark table-striped table-hover elements-list">
+                    <th>
+                    <td clospan="2"><h3 class="text-uppercase">Informations générales</h3></td>
+                    </th>
+                    <tbody>
+                    <tr>
+                        <td>Titre du Site</td>
+                        <td>
+                            {{ site.title }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Propriétaire du Site</td>
+                        <td>
+                            {{ site.owner }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mail de contact</td>
+                        <td>
+                            {{ site.siteContact }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Logo du Site</td>
+                        <td>
+                            {% if site.logo is defined %}
+                                <img class="" width="300px" height="auto" src="{{ asset('uploads/' ~ site.logo) }}">
+                                <br>{{ site.logo }}
+                            {% else %}
+                                Image non définie
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Thème du Site</td>
+                        <td>
+                            {{ site.theme }}
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="row padding-30">
+            <div class="col-md-12">
+                <table class="table table-dark table-striped table-hover elements-list">
+                    <th>
+                    <td colspan="2"><h3 class="text-uppercase">Home Page</h3></td>
+                    </th>
+                    <tbody>
+                    <tr>
+                        <td colspan="2"><h4 class="text-uppercase">Hero Header</h4></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Image actuelle
+                        </td>
+                        <td>
+                            {% if site.headerBgImage is defined %}
+                            <img class="" width="300px" height="auto" src="{{ asset('uploads/' ~ site.headerBgImage) }}">
+                            <br>{{ site.headerBgImage }}
+                            {% else %}
+                                Image non définie
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Texte au dessus du titre principal</td>
+                        <td>
+                            {{ site.preTitle }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Titre Principal</td>
+                        <td>
+                            {{ site.mainTitle }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sous-titre</td>
+                        <td>
+                            {{ site.subTitle }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" ><h4 class="text-uppercase" >Introduction</h4></td>
+                    </tr>
+                    <tr>
+                        <td>Titre de l'intro</td>
+                        <td>
+                            {{ site.introTitle }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Texte de l'intro</td>
+                        <td>
+                            {{ site.introText }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" ><h4 class="text-uppercase" >Bandeau contact</h4></td>
+                    </tr>
+                    <tr>
+                        <td>Titre</td>
+                        <td>
+                            {{ site.commercialBandTitle }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Texte</td>
+                        <td>
+                            {{ site.commercialBandText }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bouton vers 'contact' (texte)</td>
+                        <td>
+                            {{ site.commercialBandButtonText }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" ><h4 class="text-uppercase" >Citation</h4></td>
+                    </tr>
+                    <tr>
+                        <td>Texte</td>
+                        <td>
+                            {{ site.quoteText }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Auteur</td>
+                        <td>
+                            {{ site.quoteAuthor }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Auteur 2de ligne</td>
+                        <td>
+                            {{ site.quoteAuthorStatus }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" ><h4 class="text-uppercase" >Block Contact</h4></td>
+                    </tr>
+                    <tr>
+                        <td>Texte</td>
+                        <td>
+                            {{ site.contactBlockText }}
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

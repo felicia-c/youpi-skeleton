@@ -1,0 +1,15 @@
+{% extends 'theme-a/base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<section class="page-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                {% include('theme-a/security/login-form.html.twig') %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
