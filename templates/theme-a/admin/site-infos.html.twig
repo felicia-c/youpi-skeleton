@@ -26,6 +26,12 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Mail de contact</td>
+                        <td>
+                            {{ site.siteContact }}
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Logo du Site</td>
                         <td>
                             {% if site.logo is defined %}
@@ -103,6 +109,57 @@
                         <td>Texte de l'intro</td>
                         <td>
                             {{ site.introText }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" ><h4 class="text-uppercase" >Bandeau contact</h4></td>
+                    </tr>
+                    <tr>
+                        <td>Titre</td>
+                        <td>
+                            {{ site.commercialBandTitle }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Texte</td>
+                        <td>
+                            {{ site.commercialBandText }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bouton vers 'contact' (texte)</td>
+                        <td>
+                            {{ site.commercialBandButtonText }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" ><h4 class="text-uppercase" >Citation</h4></td>
+                    </tr>
+                    <tr>
+                        <td>Texte</td>
+                        <td>
+                            {{ site.quoteText }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Auteur</td>
+                        <td>
+                            {{ site.quoteAuthor }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Auteur 2de ligne</td>
+                        <td>
+                            {{ site.quoteAuthorStatus }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" ><h4 class="text-uppercase" >Block Contact</h4></td>
+                    </tr>
+                    <tr>
+                        <td>Texte</td>
+                        <td>
+                            {{ site.contactBlockText }}
                         </td>
                     </tr>
                     </tbody>

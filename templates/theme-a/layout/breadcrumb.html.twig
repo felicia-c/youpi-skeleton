@@ -5,7 +5,7 @@
                 <ul class="breadcrumb">
                     <li><a href="{{ path('index') }}">Home</a></li>
                     {% if step_title is defined %}
-                    <li><a href="#">{{ step_title }}</a></li>
+                    <li><a href="{% if step_path is defined %}{{ path(step_path) }}{% else %}#{% endif %} ">{{ step_title }}</a></li>
                     {% endif %}
                     <li>{{ page_title }}</li>
                 </ul>

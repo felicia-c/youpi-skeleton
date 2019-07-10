@@ -40,6 +40,10 @@ class ContactType extends AbstractType
                 ),
                 'required'   => true,
             ])
+            /*
+            ->add('captchaCode', CaptchaType::class, array(
+                'captchaConfig' => 'ExampleCaptcha'
+            ))*/
         ;
     }
 

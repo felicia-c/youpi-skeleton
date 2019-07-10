@@ -38,6 +38,13 @@ class SiteType extends AbstractType
                 ),
                 'required'   => false,
             ])
+            ->add('siteContact', TextType::class, [
+                'label' => 'email de contact (destinataire des messages)',
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
+                'required'   => false,
+            ])
 
             ->add('theme', TextType::class, [
                 'attr' => array(
@@ -95,6 +102,55 @@ class SiteType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control',
                     'id' => 'editor'
+                ),
+                'required'   => false,
+            ])
+            ->add('commercialBandTitle', TextType::class, [
+                'label' => 'Titre' ,
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
+                'required'   => false,
+            ])
+            ->add('commercialBandText', TextareaType::class, [
+                'label' => 'Texte' ,
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
+                'required'   => false,
+            ])
+            ->add('commercialBandButtonText', TextType::class, [
+                'label' => 'Bouton vers \'contact\' (texte)' ,
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
+                'required'   => false,
+            ])
+            ->add('quoteText', TextareaType::class, [
+                'label' => 'Texte' ,
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
+                'required'   => false,
+            ])
+            ->add('quoteAuthor', TextType::class, [
+                'label' => 'Auteur (ligne 1)' ,
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
+                'required'   => false,
+            ])
+            ->add('quoteAuthorStatus', TextType::class, [
+                'label' => 'Auteur (ligne 2)' ,
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
+                'required'   => false,
+            ])
+            ->add('contactBlockText', TextareaType::class, [
+                'label' => 'Texte du block contact' ,
+                'attr' => array(
+                    'class' => 'form-control',
                 ),
                 'required'   => false,
             ])

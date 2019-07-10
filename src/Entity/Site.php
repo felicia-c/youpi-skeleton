@@ -39,6 +39,11 @@ class Site
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $siteContact;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $preTitle;
 
     /**
@@ -60,6 +65,38 @@ class Site
      * @ORM\Column(type="string", length=255)
      */
     private $logo;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $commercialBandTitle;
+    /**
+     * @ORM\Column(type="text", length=255, nullable=true)
+     */
+    private $commercialBandText;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $commercialBandButtonText;
+
+    /**
+     * @ORM\Column(type="text", length=255, nullable=true)
+     */
+    private $quoteText;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $quoteAuthor;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $quoteAuthorStatus;
+
+    /**
+     * @ORM\Column(type="text", length=255, nullable=true)
+     */
+    private $contactBlockText;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -115,6 +152,18 @@ class Site
     public function setOwner(?string $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getSiteContact()
+    {
+        return $this->siteContact;
+    }
+
+    public function setSiteContact(?string $siteContact): self
+    {
+        $this->siteContact = $siteContact;
 
         return $this;
     }
@@ -186,6 +235,87 @@ class Site
     public function setHeaderBgImage($headerBgImage): self
     {
         $this->headerBgImage = $headerBgImage;
+
+        return $this;
+    }
+
+    //commercial band
+    public function getCommercialBandTitle(): ?string
+    {
+        return $this->commercialBandTitle;
+    }
+
+    public function setCommercialBandTitle(?string $commercialBandTitle): self
+    {
+        $this->commercialBandTitle = $commercialBandTitle;
+
+        return $this;
+    }
+    public function getCommercialBandText(): ?string
+    {
+        return $this->commercialBandText;
+    }
+
+    public function setCommercialBandText(?string $commercialBandText): self
+    {
+        $this->commercialBandText = $commercialBandText;
+
+        return $this;
+    }
+    public function getCommercialBandButtonText(): ?string
+    {
+        return $this->commercialBandButtonText;
+    }
+
+    public function setCommercialBandButtonText(?string $commercialBandButtonText): self
+    {
+        $this->commercialBandButtonText = $commercialBandButtonText;
+
+        return $this;
+    }
+
+    public function getQuoteText(): ?string
+    {
+        return $this->quoteText;
+    }
+
+    public function setQuoteText(?string $quoteText): self
+    {
+        $this->quoteText = $quoteText;
+
+        return $this;
+    }
+    public function getQuoteAuthor(): ?string
+    {
+        return $this->quoteAuthor;
+    }
+
+    public function setQuoteAuthor(?string $quoteAuthor): self
+    {
+        $this->quoteAuthor = $quoteAuthor;
+
+        return $this;
+    }
+    public function getQuoteAuthorStatus(): ?string
+    {
+        return $this->quoteAuthorStatus;
+    }
+
+    public function setQuoteAuthorStatus(?string $quoteAuthorStatus): self
+    {
+        $this->quoteAuthorStatus = $quoteAuthorStatus;
+
+        return $this;
+    }
+
+    public function getContactBlockText(): ?string
+    {
+        return $this->contactBlockText;
+    }
+
+    public function setContactBlockText(?string $contactBlockText): self
+    {
+        $this->contactBlockText = $contactBlockText;
 
         return $this;
     }

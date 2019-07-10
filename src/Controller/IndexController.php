@@ -9,6 +9,7 @@ use App\Entity\Service;
 use App\Entity\Category;
 use App\Form\ContactType;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -50,10 +51,10 @@ class IndexController extends AbstractController
 
                $contactFormData = $formContact->getData();
 
-               dump($contactFormData);
+               //dump($contactFormData);
                $message = (new \Swift_Message('Un nouveau message ! Youpi !'))
                    ->setFrom($contactFormData['from'])
-                   ->setTo('adrienrogard@gmail.com')
+                   ->setTo($siteInfos->getSiteContact())
                    ->setBody(
                        //$contactFormData['name'],
                        $contactFormData['message'],

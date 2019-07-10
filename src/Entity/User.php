@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -8,8 +7,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ *
  */
+//@UniqueEntity(fields={"username"}, message="There is already an account with this username")
 class User implements UserInterface
 {
     /**
@@ -20,9 +20,15 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $username;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $userEmail;
+
 
     /**
      * @ORM\Column(type="json")
@@ -35,6 +41,12 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @var string le token qui servira lors de l'oubli de mot de passe
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $resetToken;
+
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
@@ -45,6 +57,22 @@ class User implements UserInterface
         return $this->id;
     }
 
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserEmail()
+    {
+        return (string) $this->userEmail;
+    }
+
+    public function setUserEmail(string $userEmail): self
+    {
+        $this->userEmail= $userEmail;
+
+        return $this;
+    }
     /**
      * A visual identifier that represents this user.
      *
@@ -71,7 +99,7 @@ class User implements UserInterface
         if (empty($roles)) {
             return ['ROLE_USER'];
         }
-        return $this->roles;
+        //return $this->roles;
 
         return array_unique($roles);
     }
@@ -97,6 +125,23 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getResetToken(): string
+    {
+        return $this->resetToken;
+    }
+
+    /**
+     * @param string $resetToken
+     */
+    public function setResetToken(?string $resetToken): void
+    {
+        $this->resetToken = $resetToken;
+    }
+
 
     /**
      * @see UserInterface

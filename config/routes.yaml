@@ -5,9 +5,15 @@ index:
 login:
     path: /login
     controller: App\Controller\IndexController::login
-app_logout:
+logout:
     path: /logout
     methods: GET
+forgotten_password:
+    path: /mot-de-passe-oublie
+    controller: App\Controller\SecurityController::forgottenPassword
+reset_password:
+    path: /reinitialiser-le-mot-de-passe/{token}
+    controller: App\Controller\SecurityController::resetPassword
 show_site_infos:
     path: /admin/infos-site
     controller: App\Controller\SiteController:showSiteInfos

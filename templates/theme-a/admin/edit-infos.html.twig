@@ -20,7 +20,7 @@
                             <div>
                                 <small>Logo actuel</small>
                                 <br>
-                                <img class="" width="100px" height="auto" src="{{ asset('uploads/' ~ logo) }}">
+                                <img class="" width="200px" height="auto" src="{{ asset('uploads/' ~ logo) }}">
                             </div>
                         {% endif %}
                         <div class="form-group file-field">
@@ -35,6 +35,11 @@
                         <div class="form-group">
                             {{ form_label(form.owner) }}
                             {{ form_widget(form.owner) }}
+                            <span class="helper-text" data-error="Champ obligatoire"></span>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.siteContact) }}
+                            {{ form_widget(form.siteContact) }}
                             <span class="helper-text" data-error="Champ obligatoire"></span>
                         </div>
                         <div class="form-group">
@@ -89,6 +94,50 @@
                             <div class="form-group">
                                 {{ form_label(form.introText) }}
                                 {{ form_widget(form.introText) }}
+                                <span class="helper-text" data-error="Champ obligatoire"></span>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h4>Bandeau contact</h4>
+                            <div class="form-group">
+                                {{ form_label(form.commercialBandTitle) }}
+                                {{ form_widget(form.commercialBandTitle) }}
+                                <span class="helper-text" data-error="Champ obligatoire"></span>
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.commercialBandText) }}
+                                {{ form_widget(form.commercialBandText) }}
+                                <span class="helper-text" data-error="Champ obligatoire"></span>
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.commercialBandButtonText) }}
+                                {{ form_widget(form.commercialBandButtonText) }}
+                                <span class="helper-text" data-error="Champ obligatoire"></span>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h4>Citation</h4>
+                            <div class="form-group">
+                                {{ form_label(form.quoteText) }}
+                                {{ form_widget(form.quoteText) }}
+                                <span class="helper-text" data-error="Champ obligatoire"></span>
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.quoteAuthor) }}
+                                {{ form_widget(form.quoteAuthor) }}
+                                <span class="helper-text" data-error="Champ obligatoire"></span>
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.quoteAuthorStatus) }}
+                                {{ form_widget(form.quoteAuthorStatus) }}
+                                <span class="helper-text" data-error="Champ obligatoire"></span>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h4>Contact</h4>
+                            <div class="form-group">
+                                {{ form_label(form.contactBlockText) }}
+                                {{ form_widget(form.contactBlockText) }}
                                 <span class="helper-text" data-error="Champ obligatoire"></span>
                             </div>
                         </div>

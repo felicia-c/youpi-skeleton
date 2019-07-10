@@ -119,8 +119,9 @@ body {
   &.flash-success {
     color: green;
   }
-  &.flash-error {
+  &.flash-danger {
     color:$red-error;
+    background: #ffd9d9;
   }
   &.flash-warning {
     color: darkorange;
