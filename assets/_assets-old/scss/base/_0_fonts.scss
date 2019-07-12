@@ -22,3 +22,12 @@
   font-weight: 200;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../../../theme-base/fonts/glyphicons-halflings-regular.eot');
+  src: url('../../../theme-base/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  url('../../../theme-base/fonts/glyphicons-halflings-regular.woff2') format('woff2'),
+  url('../../../theme-base/fonts/glyphicons-halflings-regular.woff') format('woff'),
+  url('../../../theme-base/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+  url('../../../theme-base/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}

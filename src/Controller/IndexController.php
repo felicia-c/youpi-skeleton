@@ -47,26 +47,36 @@ class IndexController extends AbstractController
         $formContact = $this->createForm(ContactType::class);
         $formContact->handleRequest($request);
 
-           if ($formContact->isSubmitted() && $formContact->isValid()) {
+        if (($formContact->isSubmitted() && $formContact->isValid()) && $this->captchaverify($request->get('g-recaptcha-response'))) {
 
-               $contactFormData = $formContact->getData();
+            $contactFormData = $formContact->getData();
 
-               //dump($contactFormData);
-               $message = (new \Swift_Message('Un nouveau message ! Youpi !'))
-                   ->setFrom($contactFormData['from'])
-                   ->setTo($siteInfos->getSiteContact())
-                   ->setBody(
-                       //$contactFormData['name'],
-                       $contactFormData['message'],
-                       'text/plain'
-                   );
+            //dump($contactFormData);
+            $message = (new \Swift_Message('Un nouveau message ! Youpi !'))
+                ->setFrom($contactFormData['from'])
+                ->setTo($siteInfos->getSiteContact())
+                ->setBody(
+                //$contactFormData['name'],
+                    'Vous avez un nouveau message de : '.$contactFormData['name'].'\n \n '.$contactFormData['message'],
+                    'text/plain'
+                );
 
-               $mailer->send($message);
-               $this->addFlash('success', 'Votre message a été envoyé !');
+            $mailer->send($message);
+            $this->addFlash('success', 'Votre message a été envoyé !');
 
-               return $this->redirectToRoute('index');
+            return $this->redirectToRoute('index');
 
-           }
+        }
+        # check if captcha response isn't get throw a message
+        if ($formContact->isSubmitted() && $formContact->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))) {
+
+            $this->addFlash(
+                'danger',
+                'Veuillez remplir le Captcha'
+            );
+        }
+
+
         if (!$elements) {
             throw $this->createNotFoundException(
                 'No element found'
@@ -95,6 +105,22 @@ class IndexController extends AbstractController
         ]);
     }
 
+    # get success response from recaptcha and return it to controller
+    function captchaverify($recaptcha){
+        $url = "https://www.google.com/recaptcha/api/siteverify";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+            "secret"=>"6Le8P60UAAAAAMOQFk3nOOVZtzvOlPCXHq9FqG4r","response"=>$recaptcha));
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $data = json_decode($response);
+
+        return $data->success;
+    }
 
 
 /*
